@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class ConexionSingleton {
     private static ConexionSingleton instance = new ConexionSingleton();
-    private static final String URL = "jdbc:mysql://localhost:3306/m5_abpro_5";
+    private static final String URL = "jdbc:mysql://localhost:3306/sprint_5";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String USER = "root";
     private static final String PASSWORD = "12345";
