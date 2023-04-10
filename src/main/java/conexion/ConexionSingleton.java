@@ -7,7 +7,7 @@ import java.sql.SQLException;
 // clase llamada ConexionSingleton que implementa el patrón Singleton se encarga de crear y mantener una única instancia de la conexión a la base de datos.
 
 public class ConexionSingleton {
-	
+
 	// variables y constantes son utilizadas para establecer una conexión a la base de datos MySQL a través del patrón de diseño Singleton en la clase ConexionSingleton
     private static ConexionSingleton instance = new ConexionSingleton(); //"Patron Singleton", que garantiza que sólo haya una única instancia de la clase en todo el programa.
     private static final String URL = "jdbc:mysql://localhost:3306/m5_abpro_5";//constante que almacena la dirección URL de la base de datos que se desea conectar.
@@ -17,8 +17,6 @@ public class ConexionSingleton {
 
     private Connection connection;
 
-    
-    
     private ConexionSingleton() {
         try {
             Class.forName(DRIVER); //carga el driver de MySQL mediante el método Class.forName(DRIVER)
