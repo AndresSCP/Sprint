@@ -8,6 +8,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/Style.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     </head>
     <body id="bodylistado">
        
@@ -51,7 +52,20 @@
                             <td>${cliente.direccion}</td>
                             <td>${cliente.comuna}</td>
                             <td>${cliente.edad}</td>
-                                                         
+                            <td>
+				                <form method="post" action="SvCrearCliente">
+				                    <input type="hidden" name="rut" id="rut" value="${cliente.runUsuario}">
+				                    <button type="submit" class="btn btn-primary">
+				                        <i class="bi bi-pencil"></i>
+				                    </button>
+				                </form>
+				                <form method="post" action="SvEliminarCliente">
+				                    <input type="hidden" name="rut" value="${cliente.runUsuario}">
+				                    <button type="submit" class="btn btn-danger">
+				                        <i class="bi bi-trash"></i>
+				                    </button>
+				                </form>
+			            	</td>                            
                         </tr>
                 
                     </c:forEach>
