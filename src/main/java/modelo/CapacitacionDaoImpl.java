@@ -10,7 +10,7 @@ import java.util.List;
 import conexion.ConexionSingleton;
 import interfaces.ICapacitacionDao;
 
-
+// clase CapacitacionDaoImpl que implementa la interfaz ICapacitacionDao. 
 public class CapacitacionDaoImpl implements ICapacitacionDao{
 
 	private Connection conexion = ConexionSingleton.conectar();
@@ -18,6 +18,8 @@ public class CapacitacionDaoImpl implements ICapacitacionDao{
 
 	//hacer la conexion , ejecutar la query, obtener los objetos del resultset
 
+	
+ //Este método implementa el método de la interfaz ICapacitacionDao para registrar una capacitación en la base de datos.
 	@Override
 	public boolean registrar(Capacitacion capacitacion) {
 	    String sql = "INSERT INTO capacitacion (capfecha,caphora,caplugar,capduracion,Cliente_rutcliente,capNombre,capAsistentes) VALUES (?,?,?,?,?,?,?)";
@@ -39,6 +41,7 @@ public class CapacitacionDaoImpl implements ICapacitacionDao{
 	    }
 	}
 
+	//método que implementa la interfaz ICapacitacionDao para obtener todas las capacitaciones registradas en la base de datos.
 	@Override
 	public List<Capacitacion> obtener() {
 		String sql = "SELECT * FROM capacitacion";
@@ -65,6 +68,7 @@ public class CapacitacionDaoImpl implements ICapacitacionDao{
 		return lista;
 	}
 
+	//método actualizar de una implementación de la interfaz ICapacitacionDao. Su función es actualizar una capacitación existente en una base de datos.
 	@Override
 	public boolean actualizar(Capacitacion capacitacion) {
 //		String sql = "UPDATE capacitaciones SET rut=?,dia=?,hora=?,lugar=?,duracion=?,cantidad_asistentes=? WHERE id=?";
@@ -86,7 +90,7 @@ public class CapacitacionDaoImpl implements ICapacitacionDao{
 			return false;
 		}
 	}
-
+//método "eliminar" de la interfaz "ICapacitacionDao"
 	@Override
 	public boolean eliminar(Capacitacion capacitacion) {
 		String sql = "DELETE FROM capacitacion WHERE id=?";

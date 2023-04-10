@@ -1,6 +1,6 @@
 package modelo;
 
-
+//Clase Usuario
 public class Usuario {
 	
 	private  Integer runUsuario; // RUN del usuario (menor a 99.999.999)
@@ -9,10 +9,11 @@ public class Usuario {
 	private  Integer tipoUsuario; // Tipo de Usuario que se crea: 1 Cliente, 2 Profesional, 3 Administrativo
 			
 
+	//Constructor Vacio
 	public Usuario() {
 		super();
 	}
-
+	//Constructor con los parametros
 	public Usuario( Integer run, String nombre,String fechaNac,Integer tipo) {
 		super();
 		this.runUsuario = run;
@@ -31,6 +32,8 @@ public class Usuario {
 //		//this.idUsuario = idUsuario;
 //	}
 
+	
+	// Getter and Setter
 	public Integer getRunUsuario() {
 		return runUsuario;
 	}
@@ -63,6 +66,7 @@ public class Usuario {
 		this.tipoUsuario = tipoUsuario;
 	}
 
+	// Metodo toString para devolver la cadena
 	@Override
 	public String toString() {
 		return "Usuario [runUsuario=" + runUsuario + ", nombreUsuario=" + nombreUsuario + ", fechaNacimientoUsuario="
