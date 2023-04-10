@@ -138,9 +138,39 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 	    }
 	    return listaAdm;
 	}
-	
-}
 
+
+
+	@Override
+	public Administrativo obtenerAdministrativoPorId(int id) {
+		String sql = "SELECT u.run,u.nombre,u.fechaNac,u.tipo,a.area,a.expPrevia,a.email FROM administrativos a WHERE u.run =?";
+		sql += " JOIN usuarios u";
+		sql += " ON a.run = u.run";
+
+		Administrativo administrativo = new Administrativo();
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1,id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				administrativo.setRunUsuario(rs.getInt("run"));
+				administrativo.setNombreUsuario(rs.getString("nombre"));
+				administrativo.setFechaNacimientoUsuario(rs.getString("fechaNac"));
+				administrativo.setTipoUsuario(rs.getInt("tipo"));
+				administrativo.setArea(rs.getString("area"));
+	            administrativo.setExpPrevia(rs.getString("expPrevia"));
+	            administrativo.setEmail(rs.getString("email"));        
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return administrativo;
+		
+	}
+		
+}
 
 
 

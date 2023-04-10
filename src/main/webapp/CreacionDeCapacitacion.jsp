@@ -21,7 +21,7 @@ pageEncoding="UTF-8"%>
     
     <!-- Insertar formulario de creacion de capacitaciones -->   
     <div class="container">
-        <form action="SvCrearCapacitacion2" method="post">
+        <form action="SvCrearCapacitacion" method="post">
         <h1 class="text-center">Creacion de capacitacion</h1>
             <div class="form-group">
                 <label for="nombreCapacitacion">Nombre de capacitacion:</label>

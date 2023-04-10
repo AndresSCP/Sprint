@@ -31,6 +31,7 @@
 					<ul class="dropdown-menu">
 						<li><a class="dropdown-item" href="CrearUsuario.jsp">Crear Usuario</a></li>
 						<li><a class="dropdown-item" href="SvListarUsuario">Listar Usuario</a></li>
+						<li><a class="dropdown-item" href="SvListarAdministrativo">Listar Administrativo</a></li>
 						<li><hr class="dropdown-divider"></li>
 
 					</ul>

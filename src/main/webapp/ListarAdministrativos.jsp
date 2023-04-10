@@ -36,13 +36,9 @@
                     <td>${administrativo.expPrevia}</td>
                     <td>${administrativo.email}</td>
 			            <td>
-			                <form method="post" action="/SvEditar-usuario">
-			                    <input type="hidden" name="rut" value="${administrativo.runUsuario}">
-			                    <button type="submit" class="btn btn-primary">
-			                        <i class="bi bi-pencil"></i>
-			                    </button>
-			                </form>
-			                <form method="post" action="/SvEliminar-usuario">
+			            <a href="${pageContext.request.contextPath}/SvEditarAdministrativo?runUsuario=${administrativo.runUsuario}" class="btn btn-primary"><i class="bi bi-pencil"></i></a>
+			            
+			                <form method="post" action="/SvEditarAdministrativo">
 			                    <input type="hidden" name="rut" value="${administrativo.runUsuario}">
 			                    <button type="submit" class="btn btn-danger">
 			                        <i class="bi bi-trash"></i>
