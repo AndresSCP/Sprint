@@ -41,7 +41,7 @@ public class SvEditarAdministrativo extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int run = Integer.parseInt(request.getParameter("run"));
+		int runUsuario = Integer.parseInt(request.getParameter("run"));
 		String nombre = request.getParameter("nombreUsuario");
 		String fechaNacimiento = request.getParameter("fechaNacimientoUsuario");
 		String area = request.getParameter("area");
@@ -49,7 +49,7 @@ public class SvEditarAdministrativo extends HttpServlet {
 		String email = request.getParameter("email");
 
 		Administrativo administrativo = new Administrativo();
-		administrativo.setRun(run); // obtén el RUN del administrativo que se está editando
+		administrativo.setRunUsuario(runUsuario); // obtén el RUN del administrativo que se está editando
 		administrativo.setNombreUsuario(nombre);
 		administrativo.setFechaNacimientoUsuario(fechaNacimiento);
 		administrativo.setArea(area);

@@ -12,14 +12,19 @@ import conexion.ConexionSingleton;
 import interfaces.IAdministrativoDao;
 import modelo.Administrativo;
 
+// clase llamada AdministrativoDaoImpl que implementa la interfaz IAdministrativoDao.
 public class AdministrativoDaoImpl implements IAdministrativoDao {
 
 	private Connection conexion = ConexionSingleton.conectar();
+	
+	
+ //método recibe como parámetro un objeto "Administrativo" y realiza la operación de registrar un nuevo administrativo en la base de datos.
+
 
 	public void registrarAdministrativo(Administrativo administrativo) {
 		try {
 			String sqlUsuarios = "INSERT INTO usuarios (run, nombre, fechaNac, tipo) VALUES (?, ?, ?, ?)";
-			String sqlAdministrativos = "INSERT INTO administrativos (run, area, exPrevia, email) VALUES (?, ?, ?, ?)";
+			String sqlAdministrativos = "INSERT INTO administrativos ( area, exPrevia, email) VALUES (?, ?, ?, ?)";
 			PreparedStatement statementUsuarios = conexion.prepareStatement(sqlUsuarios);
 			statementUsuarios.setInt(1, administrativo.getRunUsuario());
 			statementUsuarios.setString(2, administrativo.getNombreUsuario());
@@ -28,10 +33,9 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 			statementUsuarios.executeUpdate();
 
 			PreparedStatement statementAdministrativos = conexion.prepareStatement(sqlAdministrativos);
-			statementAdministrativos.setInt(1, administrativo.getRun());
-			statementAdministrativos.setString(2, administrativo.getArea());
-			statementAdministrativos.setString(3, administrativo.getExpPrevia());
-			statementAdministrativos.setString(4, administrativo.getEmail());
+			statementAdministrativos.setString(1, administrativo.getArea());
+			statementAdministrativos.setString(2, administrativo.getExpPrevia());
+			statementAdministrativos.setString(3, administrativo.getEmail());
 			statementAdministrativos.executeUpdate();
 
 			conexion.commit();
@@ -46,7 +50,8 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 			e.printStackTrace();
 		}
 	}
-
+ 
+	//método recibe como parámetro un objeto "Administrativo" y actualiza los datos de ese administrativo en la base de datos.
 	@Override
 	public void actualizarAdministrativo(Administrativo administrativo) {
 		try {
@@ -63,10 +68,10 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 			statementUsuarios.executeUpdate();
 
 			PreparedStatement statementAdministrativos = conexion.prepareStatement(sqlAdministrativos);
-			statementAdministrativos.setInt(1, administrativo.getRun());
-			statementAdministrativos.setString(2, administrativo.getArea());
-			statementAdministrativos.setString(3, administrativo.getExpPrevia());
-			statementAdministrativos.setString(4, administrativo.getEmail());
+
+			statementAdministrativos.setString(1, administrativo.getArea());
+			statementAdministrativos.setString(2, administrativo.getExpPrevia());
+			statementAdministrativos.setString(3, administrativo.getEmail());
 			statementAdministrativos.executeUpdate();
 
 			conexion.commit();
@@ -81,6 +86,8 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 			e.printStackTrace();
 		}
 	}
+	
+	// método recibe como parámetro un entero "run" que representa el RUN del administrativo que se desea eliminar de la base de datos.
 
 	@Override
 	public void eliminarAdministrativo(int run) {
@@ -94,7 +101,7 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 			e.printStackTrace();
 		}
 	}
-
+//método es obtener una lista de todos los administrativos registrados en la base de datos.
 	@Override
 	public List<Administrativo> obtenerAdministrativos() {
 
