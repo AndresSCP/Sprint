@@ -13,20 +13,21 @@ import interfaces.IClienteDAO;
 import conexion.ConexionSingleton;
 
 
-//clase llamada "DaoClienteImp" que implementa la interfaz "IClienteDAO". 
+
 public class DaoClienteImp  implements IClienteDAO {
 	
 	private Connection conn;
 	
+	
+
 	public DaoClienteImp() {
 		conn = ConexionSingleton.conectar();
 	}
-	
-//método para crear o agregar un nuevo cliente a una base de datos.
+
 	@Override
 	public void addCliente(Cliente cliente) throws Exception {
 		try {
-			 PreparedStatement st = conn.prepareStatement("INSERT INTO Clientes (rutCliente, clinombres, cliapellidos, "
+			 PreparedStatement st = conn.prepareStatement("INSERT INTO cliente (rutCliente, clinombres, cliapellidos, "
 			 		+ "clitelefono,cliafp,clisistemasalud,clidireccion,clicomuna, cliedad) VALUES (?,?,?,?,?,?,?,?,?);");
 			 
 			 st.setInt(1, cliente.getRunUsuario());
@@ -38,6 +39,8 @@ public class DaoClienteImp  implements IClienteDAO {
 			 st.setString(7, cliente.getDireccion());
 			 st.setString(8, cliente.getComuna());
 			 st.setInt(9, cliente.getEdad());
+			 
+			 System.out.println(""+st);
 			 
 			 st.executeUpdate();
 	         
@@ -57,7 +60,7 @@ public class DaoClienteImp  implements IClienteDAO {
 	}
 
   
-	// Metodo updateCliente para actualizar clientes
+	
 	@Override
 	public void updateCliente(Cliente cliente) throws Exception {
 		try {
@@ -79,7 +82,7 @@ public class DaoClienteImp  implements IClienteDAO {
 		}
 		
 	}
-	// Metodo para eliminar cliente
+
 	@Override
 	public void deleteCliente(Cliente cliente) throws Exception {
 		try {
@@ -100,10 +103,10 @@ public class DaoClienteImp  implements IClienteDAO {
 		}
 		
 	}
-	// Método se encarga de obtener una lista de objetos Cliente a partir de una consulta a la base de datos.
+
 	@Override
 	public ArrayList<Cliente> listarCliente() throws Exception {
-		String sql = "SELECT nombre, fechaNac,tipo, c.* FROM usuarios u INNER JOIN  cliente ";
+		String sql = "SELECT nombre, fechaNac,tipo,run, c.* FROM usuarios u INNER JOIN  cliente c ";
 		       sql += "WHERE u.run = c.rutcliente;";
 		ArrayList<Cliente> lista = new ArrayList<>();
 		try {
@@ -116,13 +119,14 @@ public class DaoClienteImp  implements IClienteDAO {
 		        client.setNombreUsuario(rs.getString("nombre"));
 		        client.setFechaNacimientoUsuario(rs.getString("fechaNac"));
 		        client.setTipoUsuario(rs.getInt("tipo")); 
+		        client.setRunUsuario(rs.getInt("run"));
 		        client.setNombres(rs.getString("clinombres"));
 		        client.setApellidos(rs.getString("cliapellidos"));
 		        client.setTelefono(rs.getString("clitelefono"));
 		        client.setAfp(rs.getString("cliafp"));
 		        client.setSistemaSalud(rs.getInt("clisistemasalud"));
-		        client.setDireccion(rs.getString("direccion"));
-		        client.setComuna(rs.getString("comuna"));
+		        client.setDireccion(rs.getString("clidireccion"));
+		        client.setComuna(rs.getString("clicomuna"));
 		        client.setEdad(rs.getInt("cliedad"));
 		        
 		        lista.add(client);
@@ -137,8 +141,52 @@ public class DaoClienteImp  implements IClienteDAO {
 		}finally {
 		    // Mover el cierre de la conexión aquí
 		    if (conn != null) {
-		    	
-		//"try-catch" en Java se utiliza para manejar excepciones, que son errores que pueden ocurrir en tiempo de ejecución y que interrumpen el flujo normal del programa.
+		        try {
+		            conn.close();
+		        } catch (SQLException er) {
+		            er.getMessage();
+		        }
+		    }
+		}
+		return lista;
+		}
+
+	
+	
+	
+	public ArrayList<Cliente> listarEdiccionCliente() throws Exception {
+		String sql = "SELECT nombre, fechaNac,tipo,run, c.* FROM usuarios u INNER JOIN  cliente c ";
+		       sql += "WHERE u.run = c.rutcliente AND c.run = ? ;";
+		ArrayList<Cliente> lista = new ArrayList<>();
+		try {
+			    Cliente client = new Cliente();
+			    PreparedStatement ps = conn.prepareStatement(sql);
+			    ps.setInt(1, client.getRunUsuario());
+				ResultSet rs = ps.executeQuery();	
+		        
+		        client.setNombreUsuario(rs.getString("nombre"));
+		        client.setFechaNacimientoUsuario(rs.getString("fechaNac"));
+		        client.setTipoUsuario(rs.getInt("tipo")); 
+		        client.setRunUsuario(rs.getInt("run"));
+		        client.setNombres(rs.getString("clinombres"));
+		        client.setApellidos(rs.getString("cliapellidos"));
+		        client.setTelefono(rs.getString("clitelefono"));
+		        client.setAfp(rs.getString("cliafp"));
+		        client.setSistemaSalud(rs.getInt("clisistemasalud"));
+		        client.setDireccion(rs.getString("clidireccion"));
+		        client.setComuna(rs.getString("clicomuna"));
+		        client.setEdad(rs.getInt("cliedad"));
+		        
+		        lista.add(client);
+		        System.out.println(client.toString());
+		    
+		    rs.close();
+		 
+		}catch(Exception e) {
+		    throw e;
+		}finally {
+		    // Mover el cierre de la conexión aquí
+		    if (conn != null) {
 		        try {
 		            conn.close();
 		        } catch (SQLException er) {
