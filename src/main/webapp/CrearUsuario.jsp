@@ -117,8 +117,6 @@
 	</div>
 
 	<br>
-	<!-- Footer con la etiqueta include   -->
-	<%@include file="extras/footer.jsp"%>
 </body>
 <script
 	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -158,5 +156,7 @@
 		        }
 		    }
 </script>
+	<!-- Footer con la etiqueta include   -->
+	<%@include file="extras/footer.jsp"%>
    
 </html>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import interfaces.IAdministrativoDao;
 import modelo.Administrativo;
 import modelo.AdministrativoDaoImpl;
+import modelo.Usuario;
 
 /**
  * Servlet implementation class SvCrearAdministrador
@@ -64,6 +65,22 @@ public class SvCrearAdministrador extends HttpServlet {
         administrativo.setArea(area);
 		administrativo.setExpPrevia(exPrevia);
 		administrativo.setEmail(email);
+		
+		//Obtengo los valores que vienen del post del formulario crearUsuario.jsp
+		String runCompleto = request.getParameter("run");
+		String runSinDigito = runCompleto.substring(0, runCompleto.length() - 2);
+		Integer run = Integer.parseInt(runSinDigito);
+		String nombre = request.getParameter("nombre");
+        String fechaNac = request.getParameter("fechaNac");
+        Integer tipoUsuario = Integer.parseInt(request.getParameter("tipoUsuario"));
+        
+        //Creo el usuario y le asigno los valores recibidos por post
+        Usuario user = new Usuario();
+
+        user.setRunUsuario(run);
+		user.setNombreUsuario(nombre);
+		user.setFechaNacimientoUsuario(fechaNac);
+		user.setTipoUsuario(tipoUsuario);
 
         //Creo el objeto Dao que tendra los metodos CRUD entre ellos Insertar
 		try {

@@ -116,10 +116,11 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 	        while (resultSet.next()) {
 	        	Administrativo administrativo = new Administrativo (
 	            		
-	                resultSet.getInt("run"),
+	        		resultSet.getInt("run"),
 	                resultSet.getString("nombre"),
 	                resultSet.getString("fechaNac"),
-	                resultSet.getInt("tipo"),
+	                resultSet.getInt("tipoUsuario"),
+	                resultSet.getInt("run"),
 	                resultSet.getString("area"),
 	                resultSet.getString("exPrevia"),
 	                resultSet.getString("email")                       
