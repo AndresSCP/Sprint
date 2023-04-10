@@ -14,7 +14,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="css/Style.css">
 
-
 <%@include file="extras/Navbar.jsp"%>
 </head>
 <!-- Formulario Crear Usuario -->
@@ -28,7 +27,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<div class="form-group">
-						 <!--La etiqueta label: proporciona una etiqueta descriptiva para el campo de entrada -->
+							<!--La etiqueta label: proporciona una etiqueta descriptiva para el campo de entrada -->
 							<label for="nombre">Nombres de Usuario:</label> <input
 								type="text" id="nombre" name="nombre" class="form-control"
 								maxlength="30" minlength="10" required> <span
@@ -40,30 +39,26 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="tipoUsuario">Tipo de Usuario</label> <select
-							id="tipoUsuario" name="tipoUsuario" class="form-control" required>
+							id="tipoUsuario" name="tipoUsuario" class="form-control" required onchange="displayFormFields()">
 							<option value="">Seleccione un tipo de usuario</option>
 							<option value="cliente">Cliente</option>
 							<option value="profesional">Profesional</option>
 							<option value="administrativo">Administrativo</option>
-						</select> <span id="tipoUsuario-error" class="text-danger"
-							style="display: none;">Seleccione un tipo de usuario.</span>
+						    </select> <span id="nombre-error" class="text-danger d-none">Seleccione un tipo de usuario.</span>
+						<div class="formulario d-none" id="formulario-cliente">
+							<jsp:include page="CrearCliente.jsp" />
+						</div>
+						<div class="formulario d-none" id="formulario-profesional">
+							<%--     <jsp:include page="CrearProfesional.jsp" /> --%>
+						</div>
+						<div class="formulario d-none" id="formulario-administrativo">
+							<jsp:include page="CrearAdministrativo.jsp" />
+						</div>
 					</div>
 				</div>
 
 				<br>
-				<!-- D-none Clase que se utiliza para ocultar los elementos de la pag. web  -->
-				<div class="formulario d-none" id="formulario-cli">
-					<jsp:include page="CrearCliente.jsp" />
-				</div>
-				<div class="formulario d-none" id="formulario-pro">
-					<!-- jsp de Crear Profesional -->
-<%-- 					<jsp:include page=".jsp" /> --%>
-				</div>
-				<div class="formulario d-none" id="formulario-adm">
-					<!-- jsp de Crear Administrativo -->
-<%-- 					<jsp:include page=".jsp" /> --%>
 
-				</div>
 				<br>
 
 			</div>
@@ -95,6 +90,15 @@
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary">Enviar</button>
 			</div>
+				<div class="formulario d-none" id="formulario-cliente">
+					<jsp:include page="CrearCliente.jsp" />
+				</div>	
+				<div class="formulario d-none" id="formulario-profesional">
+					<%--     <jsp:include page="CrearProfesional.jsp" /> --%>
+				</div>
+				<div class="formulario d-none" id="formulario-administrativo">	
+					<jsp:include page="CrearAdministrativo.jsp" />
+				</div>
 			<br>
 			<%-- Verificar si hay un mensaje y mostrarlo en un mensaje de Bootstrap --%>
 			<c:if test="${not empty sessionScope.mensaje}">
@@ -115,9 +119,7 @@
 	<br>
 	<!-- Footer con la etiqueta include   -->
 	<%@include file="extras/footer.jsp"%>
-	<script src="js/dnone.js"></script>
 </body>
-
 <script
 	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
 	integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
@@ -126,8 +128,14 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
 	integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
 	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous">
+	</script>
+<script src="js/dnone.js"></script>
 
 <!--código de JavaScript que contiene dos funciones para validar el RUT  y el nombre de un usuario  -->
+
 <script>
 			function validarRut() {
 			  var rut = document.getElementById("run").value;
@@ -148,6 +156,7 @@
 		        } else {
 		            nombreError.classList.add('d-none');
 		        }
-		    });
-    </script>
+		    }
+</script>
+   
 </html>

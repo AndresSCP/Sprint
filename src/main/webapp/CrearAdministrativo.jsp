@@ -8,19 +8,17 @@
 		  rel="stylesheet"
 		  integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
 		  crossorigin="anonymous">
-	<link rel="stylesheet" href="css/Style.css">
-	
-<%-- 	<%@include file="extras/Navbar.jsp" %> --%>
+	<link rel="stylesheet" href="css/Style.css">	
 </head>
 <body id="bodycliente">
 	<div class="container">
-		<h1 class="text-center">Crear Cliente</h1>
+		<h1 class="text-center">Crear Administrativo</h1>
 		<form action="SvCrearCliente" method="post">
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
 						<div class="form-group">
-						    <label for="nombre">Nombres</label>
+						    <label for="nombre">Area: </label>
 						    <input type="text" id="nombre" name="nombre" class="form-control" maxlength="30" minlength="5" required>
 						    <span id="nombre-error" class="text-danger d-none">Ingrese al menos 5 caracteres.</span>
 						</div>
@@ -28,7 +26,7 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-					    <label for="apellido">Apellidos</label>
+					    <label for="apellido">Experiencia Previa: </label>
 					    <input type="text" id="apellido" name="apellido" class="form-control" maxlength="30" minlength="5" required>
 					    <span id="apellido-error" class="text-danger" style="display: none;">Ingrese al menos 5 caracteres.</span>
 					</div>
@@ -38,58 +36,9 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-  						<label for="telefono" class="form-label">Telefono:</label>
+  						<label for="telefono" class="form-label">Email:</label>
  						 <input type="text" id="telefono" name="telefono" class="form-control" maxlength="15" required >
   				</div>
-					
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						  <label for="afp">AFP</label>
-						  <input type="text" id="afp" name="afp" class="form-control" required>
-						         
-					</div>
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-  						<label for="sistSalud" class="form-label">Sistema de Salud:</label>
-                    <select class="form-select" id="sistSalud" name="sistSalud" required>
-                        <option selected disabled value="">Seleccione una Opción</option>
-                        <option value="1">Fonasa</option>
-                        <option value="2">Isapre</option>
-                     </select>
-  				</div>
-					
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						  <label for="direccion">Dirección</label>
-						  <input type="text" id="direccion" name="direccion" class="form-control" required>
-						         
-					</div>
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						  <label for="comuna">Comuna</label>
-						  <input type="text" id="comuna" name="comuna" class="form-control" required>
-						         
-					</div>
-					
-				</div>
-					
-				
-				<div class="col-md-6">
-					<div class="form-group">
-						  <label for="edad">Edad</label>
-						  <input type="text" id="edad" name="edad" class="form-control" required>
-						         
-					</div>
 					
 				</div>
 			</div>
