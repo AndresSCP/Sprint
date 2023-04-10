@@ -12,15 +12,19 @@ import conexion.ConexionSingleton;
 //import clases.Usuario;
 import interfaces.IUsuarioDao;
 
+//clase "UsuarioDaoImpl", que implementa la interfaz "IUsuarioDao".
 
 public class UsuarioDaoImpl  implements IUsuarioDao {
 
+	//La variable conn es una instancia de la clase Connection que representa una conexión con una base de datos, y 
+	//se utiliza para enviar consultas y recibir resultados de la base de datos.
 	private Connection conn;
 
 	public UsuarioDaoImpl() {
 		conn = ConexionSingleton.conectar();
 	}
 
+	//Este método es responsable de agregar un nuevo usuario a la base de datos. 
 	@Override
 	public void addUsuario(Usuario usuario) throws Exception {
 		try {PreparedStatement st = conn.prepareStatement("INSERT INTO usuarios (run, nombre, fechaNac, tipo) VALUES (?,?,?,?);");
@@ -47,8 +51,12 @@ public class UsuarioDaoImpl  implements IUsuarioDao {
 
 	}
 	
+	//Este código implementa el método updateUsuario de la interfaz UsuarioDao, que se encarga de actualizar el nombre de un usuario en la base de datos.
+	
 	@Override
 	public void updateUsuario(Usuario usuario) throws Exception {
+		
+		
 		try {
 			 PreparedStatement st = conn.prepareStatement("UPDATE usuarios SET nombre = ? WHERE run = ? ");
 			 st.setString(1, usuario.getNombreUsuario());
@@ -69,6 +77,7 @@ public class UsuarioDaoImpl  implements IUsuarioDao {
 
 	}
 
+	//Este código implementa el método deleteUsuario de la interfaz UsuarioDao, que se encarga de eliminar
 	@Override
 	public void deleteUsuario(Usuario usuario) throws Exception {
 		try {
@@ -89,7 +98,7 @@ public class UsuarioDaoImpl  implements IUsuarioDao {
 		}
 
 	}
-
+	//Este código implementa el método listarUsuario de la interfaz UsuarioDao, que se encarga de listar el usuario
 	@Override
 	public ArrayList<Usuario> listarUsuario() throws Exception {
 		String sql = "SELECT run, nombre, fechaNac,tipo FROM usuarios;";

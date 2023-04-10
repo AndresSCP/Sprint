@@ -39,7 +39,7 @@
                     <td>${cliente.nombreUsuario}</td>
                     <td>${cliente.fechaNacimientoUsuario}</td>
                     <td>${cliente.tipoUsuario}</td>
-                    <td>${cliente.runUsuario}</td>
+                    <td id="runUsuarioC">${cliente.runUsuario}</td>
                     <td>${cliente.nombres}</td>
                     <td>${cliente.apellidos}</td>
                     <td>${cliente.telefono}</td>

@@ -13,17 +13,16 @@ import interfaces.IClienteDAO;
 import conexion.ConexionSingleton;
 
 
-
+//clase llamada "DaoClienteImp" que implementa la interfaz "IClienteDAO". 
 public class DaoClienteImp  implements IClienteDAO {
 	
 	private Connection conn;
 	
-	
-
 	public DaoClienteImp() {
 		conn = ConexionSingleton.conectar();
 	}
-
+	
+//método para crear o agregar un nuevo cliente a una base de datos.
 	@Override
 	public void addCliente(Cliente cliente) throws Exception {
 		try {
@@ -58,7 +57,7 @@ public class DaoClienteImp  implements IClienteDAO {
 	}
 
   
-	
+	// Metodo updateCliente para actualizar clientes
 	@Override
 	public void updateCliente(Cliente cliente) throws Exception {
 		try {
@@ -80,7 +79,7 @@ public class DaoClienteImp  implements IClienteDAO {
 		}
 		
 	}
-
+	// Metodo para eliminar cliente
 	@Override
 	public void deleteCliente(Cliente cliente) throws Exception {
 		try {
@@ -101,7 +100,7 @@ public class DaoClienteImp  implements IClienteDAO {
 		}
 		
 	}
-
+	// Método se encarga de obtener una lista de objetos Cliente a partir de una consulta a la base de datos.
 	@Override
 	public ArrayList<Cliente> listarCliente() throws Exception {
 		String sql = "SELECT nombre, fechaNac,tipo, c.* FROM usuarios u INNER JOIN  cliente ";
@@ -138,6 +137,8 @@ public class DaoClienteImp  implements IClienteDAO {
 		}finally {
 		    // Mover el cierre de la conexión aquí
 		    if (conn != null) {
+		    	
+		//"try-catch" en Java se utiliza para manejar excepciones, que son errores que pueden ocurrir en tiempo de ejecución y que interrumpen el flujo normal del programa.
 		        try {
 		            conn.close();
 		        } catch (SQLException er) {

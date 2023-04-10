@@ -12,9 +12,14 @@ import conexion.ConexionSingleton;
 import interfaces.IAdministrativoDao;
 import modelo.Administrativo;
 
+// clase llamada AdministrativoDaoImpl que implementa la interfaz IAdministrativoDao.
 public class AdministrativoDaoImpl implements IAdministrativoDao {
 
 	private Connection conexion = ConexionSingleton.conectar();
+	
+	
+ //método recibe como parámetro un objeto "Administrativo" y realiza la operación de registrar un nuevo administrativo en la base de datos.
+
 
 	public void registrarAdministrativo(Administrativo administrativo) {
 		try {
@@ -46,7 +51,8 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 			e.printStackTrace();
 		}
 	}
-
+ 
+	//método recibe como parámetro un objeto "Administrativo" y actualiza los datos de ese administrativo en la base de datos.
 	@Override
 	public void actualizarAdministrativo(Administrativo administrativo) {
 		try {
@@ -81,6 +87,8 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 			e.printStackTrace();
 		}
 	}
+	
+	// método recibe como parámetro un entero "run" que representa el RUN del administrativo que se desea eliminar de la base de datos.
 
 	@Override
 	public void eliminarAdministrativo(int run) {
@@ -94,7 +102,7 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 			e.printStackTrace();
 		}
 	}
-
+//método es obtener una lista de todos los administrativos registrados en la base de datos.
 	@Override
 	public List<Administrativo> obtenerAdministrativos() {
 
