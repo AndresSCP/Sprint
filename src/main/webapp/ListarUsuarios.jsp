@@ -22,10 +22,10 @@
 
 
 	<h1>Listado de Usuarios</h1>
-	<div class="container">
+	<div class="container" >
 
-		<div class="col-md-6">
-			<div class="form-group">
+		<div class="col-md-12">
+			<div class="form-group" >
 				<label for="tipoUsuario">Tipo de Usuario</label> <select
 					id="tipoUsuario" name="tipoUsuario" class="form-control" required
 					onchange="displayFormFields()">

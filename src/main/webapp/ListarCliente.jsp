@@ -3,68 +3,80 @@
 <!DOCTYPE html>
 <html>
     <head>
-    	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+		<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+	crossorigin="anonymous">
 		<link rel="stylesheet" href="css/Style.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     </head>
     <body id="bodylistado">
        
-<!--creando una tabla para mostrar un listado de clientes, donde cada fila representará un cliente y cada columna de la tabla mostrará información  del cliente. -->
-<h1>Listado de Clientes</h1>
-<div class="container">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Fecha Nacimiento</th>
-                <th>Tipo Usuario</th>
-                <th>Run</th>
-                <th>Nombre Cliente</th>
-                <th>Apellido Cliente</th>
-                <th>Telefono</th>
-                <th>AFP</th>
-                <th>Sistema Salud</th>
-                <th>Dirección</th>
-                <th>Comuna</th>
-                <th>Edad</th>
-                <th>Modificar</th>
-                <th>Eliminar</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach var="cliente" items="${miListaCliente}">
-                <tr>
-                    <td>${cliente.nombreUsuario}</td>
-                    <td>${cliente.fechaNacimientoUsuario}</td>
-                    <td>${cliente.tipoUsuario}</td>
-                    <td id="runUsuarioC">${cliente.runUsuario}</td>
-                    <td>${cliente.nombres}</td>
-                    <td>${cliente.apellidos}</td>
-                    <td>${cliente.telefono}</td>
-                    <td>${cliente.afp}</td>
-                    <td>${cliente.sistemaSalud}</td>
-                    <td>${cliente.direccion}</td>
-                    <td>${cliente.comuna}</td>
-                    <td>${cliente.edad}</td>
-                    <td>
-                        <form action="ModificarClienteServlet" method="GET">
-                            <input type="hidden" name="clienteId" value="${cliente.id}">
-                            <button type="submit">Modificar</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="EliminarClienteServlet" method="POST">
-                            <input type="hidden" name="clienteId" value="${cliente.id}">
-                            <button type="submit">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
-</div>
+<!--creando una tabla para mostrar un listado de clientes, donde cada fila representarï¿½ un cliente y cada columna de la tabla mostrarï¿½ informaciï¿½n  del cliente. -->
+       <h1>Listado de Clientes</h1>
+         <div class="container">
+		 <table class="table">
+                <thead>
+                    <tr>
+                        
+                        <th>Username</th>
+                        <th>Fecha Nacimiento</th>
+                        <th>Tipo Usuario</th>
+                        <th>Run</th>
+                        <th>Nombre Cliente</th>
+                        <th>Apellido Cliente</th>
+                        <th>Telefono</th>
+                        <th>AFP</th>
+                        <th>Sistema Salud</th>
+                        <th>Direcciï¿½n</th>
+                        <th>Comuna</th>
+                        <th>Edad</th>                       
+                    </tr>
+                </thead>
+
+                <tbody>
+                	<!--<c:out value="${miListaUsuario}" /> con esto se valida si trae datos -->
+                    <c:forEach var="cliente" items="${miListaCliente}">
+                       
+                        
+                        <tr>
+                            <td>${cliente.nombreUsuario}</td>
+                            <td>${cliente.fechaNacimientoUsuario}</td>
+                            <td>${cliente.tipoUsuario}</td>
+                            <td>${cliente.runUsuario}</td>
+                            <td>${cliente.nombres}</td>
+                            <td>${cliente.apellidos}</td>
+                            <td>${cliente.telefono}</td>
+                            <td>${cliente.afp}</td>
+                            <td>${cliente.sistemaSalud}</td>
+                            <td>${cliente.direccion}</td>
+                            <td>${cliente.comuna}</td>
+                            <td>${cliente.edad}</td>
+                            <td>
+				                <form method="post" action="SvCrearCliente">
+				                    <input type="hidden" name="rut" id="rut" value="${cliente.runUsuario}">
+				                    <button type="submit" class="btn btn-primary">
+				                        <i class="bi bi-pencil"></i>
+				                    </button>
+				                </form>
+				                <form method="post" action="SvEliminarCliente">
+				                    <input type="hidden" name="rut" value="${cliente.runUsuario}">
+				                    <button type="submit" class="btn btn-danger">
+				                        <i class="bi bi-trash"></i>
+				                    </button>
+				                </form>
+			            	</td>                            
+                        </tr>
+                
+                    </c:forEach>
+                </tbody>
+            </table>
+       	  </div>
 
 
      <script

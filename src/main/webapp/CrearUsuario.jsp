@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -19,10 +20,10 @@
 <!-- Formulario Crear Usuario -->
 <body id="bodycapacitacion">
 	<div class="container">
-		<h1 class="text-center">Crear Usuario</h1>
+		<h1 class="text-center">Usuario</h1>
 
 		<!--La etiqueta form especifica que la información del formulario será enviada al servidor en una petición HTTP POST cuando se envíe el formulario.-->
-		<form action="svCrearUsuario" method="post">
+		<form action="SvCrearCliente" method="post">
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
@@ -41,19 +42,13 @@
 						<label for="tipoUsuario">Tipo de Usuario</label> <select
 							id="tipoUsuario" name="tipoUsuario" class="form-control" required onchange="displayFormFields()">
 							<option value="">Seleccione un tipo de usuario</option>
-							<option value="cliente">Cliente</option>
-							<option value="profesional">Profesional</option>
-							<option value="administrativo">Administrativo</option>
-						    </select> <span id="nombre-error" class="text-danger d-none">Seleccione un tipo de usuario.</span>
-						<div class="formulario d-none" id="formulario-cliente">
-							<jsp:include page="CrearCliente.jsp" />
-						</div>
-						<div class="formulario d-none" id="formulario-profesional">
-							<%--     <jsp:include page="CrearProfesional.jsp" /> --%>
-						</div>
-						<div class="formulario d-none" id="formulario-administrativo">
-							<jsp:include page="CrearAdministrativo.jsp" />
-						</div>
+
+							<option value=1>Cliente</option>
+							<option value=2>Profesional</option>
+							<option value=3>Administrativo</option>
+						</select> <span id="tipoUsuario-error" class="text-danger"
+							style="display: none;">Seleccione un tipo de usuario.</span>
+
 					</div>
 				</div>
 
@@ -86,19 +81,25 @@
 
 				</div>
 			</div>
-			<br>
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary">Enviar</button>
-			</div>
-				<div class="formulario d-none" id="formulario-cliente">
-					<jsp:include page="CrearCliente.jsp" />
+				
+			<!-- D-none Clase que se utiliza para ocultar los elementos de la pag. web  -->
+				<div class="formulario" id="formulario-cli">
+					<%@ include file="extras/CrearCliente2.jsp" %>
+				</div>
+				<div class="formulario d-none" id="formularioPro">
+					<!-- jsp de Crear Profesional -->
+					<%@ include file="extras/CrearProfesional2.jsp" %>
+				</div>
+				<div class="formulario d-none" id="formularioAdmin">
+					<!-- jsp de Crear Administrativo -->
+					<%@ include file="extras/CrearAdrministrativo2.jsp" %>
+
 				</div>	
-				<div class="formulario d-none" id="formulario-profesional">
-					<%--     <jsp:include page="CrearProfesional.jsp" /> --%>
-				</div>
-				<div class="formulario d-none" id="formulario-administrativo">	
-					<jsp:include page="CrearAdministrativo.jsp" />
-				</div>
+			<br>
+
+			<!-- <div class="form-group"> -->
+				<!-- <button type="submit" class="btn btn-primary">Enviar</button> -->
+			<!-- </div>  -->
 			<br>
 			<%-- Verificar si hay un mensaje y mostrarlo en un mensaje de Bootstrap --%>
 			<c:if test="${not empty sessionScope.mensaje}">
@@ -130,33 +131,51 @@
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous">
 	</script>
-<script src="js/dnone.js"></script>
+<!-- <script src="js/dnone.js"></script> -->
 
-<!--código de JavaScript que contiene dos funciones para validar el RUT  y el nombre de un usuario  -->
+<script>			 
+var rut = document.getElementById("run").value;
+if (!/^(\d{7,8}-[\dkK])$/.test(rut)) {
+    document.getElementById("run").classList.add("is-invalid");
+  } else {
+    document.getElementById("run").classList.remove("is-invalid");
+  }
 
-<script>
-			function validarRut() {
-			  var rut = document.getElementById("run").value;
-			  if (!/^(\d{7,8}-[\dkK])$/.test(rut)) {
-			    document.getElementById("run").classList.add("is-invalid");
-			  } else {
-			    document.getElementById("run").classList.remove("is-invalid");
-			  }
-			}
-			
-			
-		    const inputNombre = document.querySelector('#nombre');
-		    const nombreError = document.querySelector('#nombre-error');
 
-		    inputNombre.addEventListener('input', () => {
-		        if (inputNombre.value.length < 10) {
-		            nombreError.classList.remove('d-none');
-		        } else {
-		            nombreError.classList.add('d-none');
-		        }
-		    }
-</script>
-	<!-- Footer con la etiqueta include   -->
-	<%@include file="extras/footer.jsp"%>
-   
+
+const inputNombre = document.querySelector('#nombre');
+const nombreError = document.querySelector('#nombre-error');
+
+inputNombre.addEventListener('input', () => {
+    if (inputNombre.value.length < 10) {
+        nombreError.classList.remove('d-none');
+    } else {
+        nombreError.classList.add('d-none');
+    }
+
+});
+
+const tipoUsuarioSelect = document.getElementById("tipoUsuario");
+const formularioCli = document.getElementById("formulario-cli");
+	const formularioAdmin = document.getElementById("formularioAdmin");
+	const formularioPro = document.getElementById("formularioPro");
+
+tipoUsuarioSelect.addEventListener("change", () => {
+  if (tipoUsuarioSelect.value === "1") {
+    formularioCli.classList.remove("d-none");
+    formularioAdmin.classList.add("d-none");
+    formularioPro.classList.add("d-none");
+    
+  } else if(tipoUsuarioSelect.value ==="2") {
+	formularioCli.classList.add("d-none");
+    formularioAdmin.classList.add("d-none");
+    formularioPro.classList.remove("d-none");
+	} else if (tipoUsuarioSelect.value ==="3") {
+	formularioCli.classList.add("d-none");
+    formularioAdmin.classList.remove("d-none");
+    formularioPro.classList.add("d-none");
+  }
+});</script>
+
+
 </html>
