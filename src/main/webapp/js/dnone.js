@@ -1,5 +1,4 @@
 
-
 /*La función displayFormFields() es una función de JavaScript que se encarga de mostrar diferentes campos de formulario en función de la opción 
 seleccionada en una lista desplegable con un id de "tipoUsuario".*/
 function displayFormFields() {
@@ -24,10 +23,18 @@ function displayFormFields() {
         document.getElementById("formulario-profesional").classList.add("d-none");
         document.getElementById("formulario-administrativo").classList.remove("d-none");
         document.getElementById("formulario-usuario").classList.add("d-none");
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+            }
+        };
+        xmlhttp.open("GET", "SvListarAdministrativo", true);
+        xmlhttp.send();
     } else if (selectedOption == "usuario") {
         document.getElementById("formulario-cliente").classList.add("d-none");
         document.getElementById("formulario-profesional").classList.add("d-none");
         document.getElementById("formulario-administrativo").classList.add("d-none");
         document.getElementById("formulario-usuario").classList.remove("d-none");
-}
+        }    
 }
