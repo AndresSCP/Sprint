@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -20,10 +21,10 @@
 <!-- Formulario Crear Usuario -->
 <body id="bodycapacitacion">
 	<div class="container">
-		<h1 class="text-center">Crear Usuario</h1>
+		<h1 class="text-center">Usuario</h1>
 
 		<!--La etiqueta form especifica que la información del formulario será enviada al servidor en una petición HTTP POST cuando se envíe el formulario.-->
-		<form action="svCrearUsuario" method="post">
+		<form action="svCrearCliente" method="post">
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
@@ -42,28 +43,16 @@
 						<label for="tipoUsuario">Tipo de Usuario</label> <select
 							id="tipoUsuario" name="tipoUsuario" class="form-control" required>
 							<option value="">Seleccione un tipo de usuario</option>
-							<option value="cliente">Cliente</option>
-							<option value="profesional">Profesional</option>
-							<option value="administrativo">Administrativo</option>
+							<option value=1>Cliente</option>
+							<option value=2>Profesional</option>
+							<option value=3>Administrativo</option>
 						</select> <span id="tipoUsuario-error" class="text-danger"
 							style="display: none;">Seleccione un tipo de usuario.</span>
 					</div>
 				</div>
 
 				<br>
-				<!-- D-none Clase que se utiliza para ocultar los elementos de la pag. web  -->
-				<div class="formulario d-none" id="formulario-cli">
-					<jsp:include page="CrearCliente.jsp" />
-				</div>
-				<div class="formulario d-none" id="formulario-pro">
-					<!-- jsp de Crear Profesional -->
-<%-- 					<jsp:include page=".jsp" /> --%>
-				</div>
-				<div class="formulario d-none" id="formulario-adm">
-					<!-- jsp de Crear Administrativo -->
-<%-- 					<jsp:include page=".jsp" /> --%>
-
-				</div>
+				
 				<br>
 
 			</div>
@@ -91,10 +80,24 @@
 
 				</div>
 			</div>
+				
+			<!-- D-none Clase que se utiliza para ocultar los elementos de la pag. web  -->
+				<div class="formulario" id="formulario-cli">
+					<%@ include file="extras/CrearCliente2.jsp" %>
+				</div>
+				<div class="formulario d-none" id="formulario-pro">
+					<!-- jsp de Crear Profesional -->
+					<%-- <jsp:include page=".jsp" /> --%>
+				</div>
+				<div class="formulario d-none" id="formulario-adm">
+					<!-- jsp de Crear Administrativo -->
+					<%-- <jsp:include page=".jsp" /> --%>
+
+				</div>	
 			<br>
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary">Enviar</button>
-			</div>
+			<!-- <div class="form-group"> -->
+				<!-- <button type="submit" class="btn btn-primary">Enviar</button> -->
+			<!-- </div>  -->
 			<br>
 			<%-- Verificar si hay un mensaje y mostrarlo en un mensaje de Bootstrap --%>
 			<c:if test="${not empty sessionScope.mensaje}">
@@ -149,5 +152,18 @@
 		            nombreError.classList.add('d-none');
 		        }
 		    });
+		    
+		    const tipoUsuarioSelect = document.getElementById("tipoUsuario");
+		    const formularioCli = document.getElementById("formulario-cli");
+
+		    tipoUsuarioSelect.addEventListener("change", () => {
+		      if (tipoUsuarioSelect.value === "1") {
+		        formularioCli.classList.remove("d-none");
+		      } else {
+		        formularioCli.classList.add("d-none");
+		      }
+		    });
+
+
     </script>
 </html>
