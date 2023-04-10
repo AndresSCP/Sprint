@@ -1,7 +1,8 @@
-
-<!--JSLT es una biblioteca de etiquetas personalizadas que se puede utilizar en páginas JSP para simplificar la escritura de código -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!--JSLT es una biblioteca de etiquetas personalizadas que se puede utilizar en pÃ¡ginas JSP para simplificar la escritura de cÃ³digo -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- Navbar con La etiqueta incluide sirve para reutilizar el contenido en varias páginas JSP  -->
+<!-- Navbar con La etiqueta incluide sirve para reutilizar el contenido en varias pÃ¡ginas JSP  -->
 <%@include file="extras/Navbar.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -22,6 +23,9 @@
 
 
 	<h1>Listado de Usuarios</h1>
+	 <!-- importar las clases ArrayList y List del paquete java.util-->
+	<%@ page import="java.util.ArrayList"%>
+	<%@ page import="java.util.List"%>
 	<div class="container">
 
 		<div class="col-md-6">

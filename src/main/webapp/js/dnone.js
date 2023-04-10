@@ -15,6 +15,14 @@ function displayFormFields() {
         document.getElementById("formulario-profesional").classList.add("d-none");
         document.getElementById("formulario-administrativo").classList.remove("d-none");
         document.getElementById("formulario-usuario").classList.add("d-none");
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+            }
+        };
+        xmlhttp.open("GET", "SvListarAdministrativo", true);
+        xmlhttp.send();
     } else if (selectedOption == "usuario") {
         document.getElementById("formulario-cliente").classList.add("d-none");
         document.getElementById("formulario-profesional").classList.add("d-none");

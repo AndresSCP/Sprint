@@ -40,8 +40,8 @@ public class SvListarUsuario extends HttpServlet {
         }
 
 
-		System.out.println("El tamaño de la lista miArrayList es: " + miArrayList.size());
-		response.getWriter().println("El tamaño de la lista miArrayList es: " + miArrayList.size());
+//		System.out.println("El tamaño de la lista miArrayList es: " + miArrayList.size());
+//		response.getWriter().println("El tamaño de la lista miArrayList es: " + miArrayList.size());
 
 		// Establecer el atributo miLista en el objeto request
 		request.setAttribute("miListaUsuario", miArrayList);
