@@ -114,7 +114,6 @@ public class UsuarioDaoImpl  implements IUsuarioDao {
 		        user.setFechaNacimientoUsuario(rs.getString("fechaNac"));
 		        user.setTipoUsuario(rs.getInt("tipo")); 
 		        lista.add(user);
-		        System.out.println(user.toString());
 		    }
 		    rs.close();
 		   

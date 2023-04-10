@@ -20,4 +20,6 @@ function displayFormFields() {
         document.getElementById("formulario-profesional").classList.add("d-none");
         document.getElementById("formulario-administrativo").classList.add("d-none");
         document.getElementById("formulario-usuario").classList.remove("d-none");
-}
+    }
+}    
+

@@ -10,7 +10,7 @@ public class ConexionSingleton {
 
 	// variables y constantes son utilizadas para establecer una conexión a la base de datos MySQL a través del patrón de diseño Singleton en la clase ConexionSingleton
     private static ConexionSingleton instance = new ConexionSingleton(); //"Patron Singleton", que garantiza que sólo haya una única instancia de la clase en todo el programa.
-    private static final String URL = "jdbc:mysql://localhost:3306/m5_abpro_5";//constante que almacena la dirección URL de la base de datos que se desea conectar.
+    private static final String URL = "jdbc:mysql://localhost:3306/SPRINT_5";//constante que almacena la dirección URL de la base de datos que se desea conectar.
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";//constante que especifica el controlador JDBC que se utilizará para la conexión a la base de datos
     private static final String USER = "root"; //usuario de la base de datos
     private static final String PASSWORD = "12345"; // Clave de la Base de datos.
