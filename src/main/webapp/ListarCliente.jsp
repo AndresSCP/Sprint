@@ -12,52 +12,59 @@
     <body id="bodylistado">
        
 <!--creando una tabla para mostrar un listado de clientes, donde cada fila representará un cliente y cada columna de la tabla mostrará información  del cliente. -->
-       <h1>Listado de Clientes</h1>
-         <div class="container">
-		 <table class="table">
-                <thead>
-                    <tr>
-                        
-                        <th>Username</th>
-                        <th>Fecha Nacimiento</th>
-                        <th>Tipo Usuario</th>
-                        <th>Run</th>
-                        <th>Nombre Cliente</th>
-                        <th>Apellido Cliente</th>
-                        <th>Telefono</th>
-                        <th>AFP</th>
-                        <th>Sistema Salud</th>
-                        <th>Dirección</th>
-                        <th>Comuna</th>
-                        <th>Edad</th>                       
-                    </tr>
-                </thead>
-
-                <tbody>
-                	<!--<c:out value="${miListaUsuario}" /> con esto se valida si trae datos -->
-                    <c:forEach var="cliente" items="${miListaCliente}">
-                       
-                        
-                        <tr>
-                            <td>${cliente.nombreUsuario}</td>
-                            <td>${cliente.fechaNacimientoUsuario}</td>
-                            <td>${cliente.tipoUsuario}</td>
-                            <td>${cliente.runUsuario}</td>
-                            <td>${cliente.nombres}</td>
-                            <td>${cliente.apellidos}</td>
-                            <td>${cliente.telefono}</td>
-                            <td>${cliente.afp}</td>
-                            <td>${cliente.sistemaSalud}</td>
-                            <td>${cliente.direccion}</td>
-                            <td>${cliente.comuna}</td>
-                            <td>${cliente.edad}</td>
-                                                         
-                        </tr>
-                
-                    </c:forEach>
-                </tbody>
-            </table>
-       	  </div>
+<h1>Listado de Clientes</h1>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Fecha Nacimiento</th>
+                <th>Tipo Usuario</th>
+                <th>Run</th>
+                <th>Nombre Cliente</th>
+                <th>Apellido Cliente</th>
+                <th>Telefono</th>
+                <th>AFP</th>
+                <th>Sistema Salud</th>
+                <th>Dirección</th>
+                <th>Comuna</th>
+                <th>Edad</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="cliente" items="${miListaCliente}">
+                <tr>
+                    <td>${cliente.nombreUsuario}</td>
+                    <td>${cliente.fechaNacimientoUsuario}</td>
+                    <td>${cliente.tipoUsuario}</td>
+                    <td id="runUsuarioC">${cliente.runUsuario}</td>
+                    <td>${cliente.nombres}</td>
+                    <td>${cliente.apellidos}</td>
+                    <td>${cliente.telefono}</td>
+                    <td>${cliente.afp}</td>
+                    <td>${cliente.sistemaSalud}</td>
+                    <td>${cliente.direccion}</td>
+                    <td>${cliente.comuna}</td>
+                    <td>${cliente.edad}</td>
+                    <td>
+                        <form action="ModificarClienteServlet" method="GET">
+                            <input type="hidden" name="clienteId" value="${cliente.id}">
+                            <button type="submit">Modificar</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="EliminarClienteServlet" method="POST">
+                            <input type="hidden" name="clienteId" value="${cliente.id}">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+</div>
 
 
      <script

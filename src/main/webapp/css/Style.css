@@ -10,7 +10,7 @@
 /* Estilo de pagina login  */
 #bodylogin{
 	background-image: url('../imagenes/preve.jpg');
-  	background-size: auto 250%;	
+  	background-size: cover;	
   	font-style: italic;
 }
 
@@ -35,7 +35,7 @@ h2 {
 	background-image: url('../imagenes/azules1.jpg');
 	background-size:cover;
 }
-
+/*color Parrafo*/
 p{
 	color: white;
 }
@@ -53,11 +53,11 @@ p{
 #lista{
 	background-color: #f9f9f9;
 }
-
+/*color titlo Footer*/
 #titulofoot{
 	background-color: #c9d8e5;
 }
-
+/*color calendario Footer*/
 #calendario{
 	background-color: #c9d8e5;
 }
