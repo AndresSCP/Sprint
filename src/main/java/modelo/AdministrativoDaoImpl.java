@@ -105,7 +105,7 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 	@Override
 	public List<Administrativo> obtenerAdministrativos() {
 
-	    String query = "SELECT a.*, u.nombre,u.fechaNac,u.tipo FROM administrativos a";
+	    String query = "SELECT u.run,u.nombre,u.fechaNac,u.tipo,a.area,a.expPrevia,a.email FROM administrativos a";
 	    query += " JOIN usuarios u";
 	    query += " ON a.run = u.run";
 
@@ -119,10 +119,9 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 	        		resultSet.getInt("run"),
 	                resultSet.getString("nombre"),
 	                resultSet.getString("fechaNac"),
-	                resultSet.getInt("tipoUsuario"),
-	                resultSet.getInt("run"),
+	                resultSet.getInt("tipo"),	                
 	                resultSet.getString("area"),
-	                resultSet.getString("exPrevia"),
+	                resultSet.getString("expPrevia"),
 	                resultSet.getString("email")                       
 	            );
 	            listaAdministrativos.add(administrativo);

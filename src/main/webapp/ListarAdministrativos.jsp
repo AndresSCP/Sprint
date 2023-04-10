@@ -24,30 +24,30 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="administrativo" items="${miListaAdministrativo}">
-                <tr>
-                    <td>${administrativo.run}</td>
-                    <td>${administrativo.nombre}</td>
-                    <td>${administrativo.fechaNac}</td>
-                    <td>${administrativo.tipo}</td>
-                    <td>${administrativo.run}</td>
-                    <td>${administrativo.area }
-                    <td>${administrativo.expPrevia}</td>
-                    <td>${administrativo.email}</td>
-                    <td>
-                        <form action="ModificarClienteServlet" method="GET">
-                            <input type="hidden" name="clienteId" value="${cliente.id}">
-                            <button type="submit">Modificar</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="EliminarClienteServlet" method="POST">
-                            <input type="hidden" name="clienteId" value="${cliente.id}">
-                            <button type="submit">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-            </c:forEach>
+        <%@ page import="modelo.AdministrativoDaoImpl" 
+        obtenerAdministrativos();
+        %>
+        <% for (listaAdministrativos) { %>
+        <tr>
+            <td><%= listaAdministrativos.getRun() %></td>
+            <td><%= listaAdministrativos.getNombre() %></td>
+            <td><%= listaAdministrativos.getFechaNac() %></td>
+            <td><%= listaAdministrativos.getTipo() %></td>
+            <td><%= listaAdministrativos.getArea() %></td>
+            <td><%= listaAdministrativos.getExpPrevia() %></td>
+            <td><%= listaAdministrativos.getEmail() %></td>
+            <td>
+                <form action="ModificarClienteServlet" method="GET">
+                    <input type="hidden" name="clienteId" value="<%= listaAdministrativos.getRun() %>">
+                    <button type="submit">Modificar</button>
+                </form>
+                <form action="EliminarClienteServlet" method="POST">
+                    <input type="hidden" name="clienteId" value="<%= listaAdministrativos.getRun() %>">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        <% } %>
         </tbody>
     </table>
 </div>
@@ -59,7 +59,7 @@
 	<script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" 	integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
 	crossorigin="anonymous"></script>
-       
+    <script src="js/dnone.js"></script>	   
     </body>
     <!-- Footer con la etiqueta include   -->
 <%-- 	<footer><%@include file="extras/footer.jsp"%></footer>	 --%>
