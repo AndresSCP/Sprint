@@ -7,7 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import modelo.AdministrativoDaoImpl;
 import modelo.Administrativo;
 
 
@@ -32,7 +32,16 @@ public class SvEditarAdministrativo extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int runUsuario = Integer.parseInt(request.getParameter("runUsuario"));
+		System.out.println(runUsuario);
+		AdministrativoDaoImpl administrativoDao = new AdministrativoDaoImpl();
+		
+		Administrativo administrativo = administrativoDao.obtenerAdministrativoPorId(runUsuario);
+		
+		request.setAttribute("administrativo",administrativo);
+		
+		request.getRequestDispatcher("ListarAdministrativos.jsp").forward(request, response);
+		
 	}
 
 	/**
