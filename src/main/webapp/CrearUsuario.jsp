@@ -61,12 +61,8 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="run" class="form-label">RUN:</label> <input
-							type="text" id="run" name="run" class="form-control"
-							maxlength="10" required pattern="\d{7,8}-[Kk\d]"
-							onblur="validarRut()">
-						<div class="invalid-feedback">Ingrese un RUN válido (Ej:
-							12345678-9)</div>
+						<label for="run" class="form-label">Run:</label> <input type="text" class="form-control" maxlength="12" 
+						required pattern="\d{1,2}\.\d{3}\.\d{3}-[0-9kK]" onblur="validarRut()">
 					</div>
 
 				</div>
