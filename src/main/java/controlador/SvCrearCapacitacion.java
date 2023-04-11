@@ -93,7 +93,8 @@ public class SvCrearCapacitacion extends HttpServlet {
 		// Redirigir al usuario a una página de confirmación (o mostrar un mensaje en la
 		// misma página)
 		if (registroExitoso) {
-			response.sendRedirect("ListarCapacitaciones.jsp");
+			request.getSession().setAttribute("mensaje", "Los datos fueron registrados satisfactoriamente.");
+			response.sendRedirect("CreacionDeCapacitacion.jsp");
 		} else {
 			response.sendRedirect("CreacionDeCapacitacion.jsp");
 		}

@@ -67,9 +67,10 @@ public class SvCrearAdministrador extends HttpServlet {
 		administrativo.setEmail(email);
 		
 		//Obtengo los valores que vienen del post del formulario crearUsuario.jsp
-		String runCompleto = request.getParameter("run");
-		String runSinDigito = runCompleto.substring(0, runCompleto.length() - 2);
-		Integer run = Integer.parseInt(runSinDigito);
+//		String runCompleto = request.getParameter("run");
+//		String runSinDigito = runCompleto.substring(0, runCompleto.length() - 2);
+		
+		Integer run = Integer.parseInt(request.getParameter("run"));
 		String nombre = request.getParameter("nombre");
         String fechaNac = request.getParameter("fechaNac");
         Integer tipoUsuario = Integer.parseInt(request.getParameter("tipoUsuario"));

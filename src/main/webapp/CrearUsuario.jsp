@@ -23,7 +23,7 @@
 		<h1 class="text-center">Usuario</h1>
 
 		<!--La etiqueta form especifica que la información del formulario será enviada al servidor en una petición HTTP POST cuando se envíe el formulario.-->
-		<form action="SvCrearCliente" method="post">
+		<form action="SvCrearCliente" method="get">
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
@@ -62,7 +62,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="run" class="form-label">Run:</label> <input type="text" class="form-control" maxlength="12" 
-						required pattern="\d{1,2}\.\d{3}\.\d{3}-[0-9kK]" onblur="validarRut()">
+						required pattern="\d{1,2}\.\d{3}\.\d{3}-[0-9kK]" onblur="validarRut()">						
 					</div>
 
 				</div>
@@ -79,7 +79,7 @@
 			</div>
 				
 			<!-- D-none Clase que se utiliza para ocultar los elementos de la pag. web  -->
-				<div class="formulario" id="formulario-cli">
+				<div class="formulario d-none" id="formulario-cli">
 					<%@ include file="extras/CrearCliente2.jsp" %>
 				</div>
 				<div class="formulario d-none" id="formularioPro">
@@ -88,11 +88,10 @@
 				</div>
 				<div class="formulario d-none" id="formularioAdmin">
 					<!-- jsp de Crear Administrativo -->
-					<%@ include file="extras/CrearAdrministrativo2.jsp" %>
+					<%@ include file="extras/CrearAdministrativo2.jsp" %>
 
 				</div>	
 			<br>
-
 			<!-- <div class="form-group"> -->
 				<!-- <button type="submit" class="btn btn-primary">Enviar</button> -->
 			<!-- </div>  -->
@@ -126,8 +125,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous">
-	</script>
-<!-- <script src="js/dnone.js"></script> -->
+</script>
+<script src="js/dnone2.js"></script>
 
 <script>			 
 var rut = document.getElementById("run").value;
@@ -150,28 +149,6 @@ inputNombre.addEventListener('input', () => {
     }
 
 });
-
-const tipoUsuarioSelect = document.getElementById("tipoUsuario");
-const formularioCli = document.getElementById("formulario-cli");
-	const formularioAdmin = document.getElementById("formularioAdmin");
-	const formularioPro = document.getElementById("formularioPro");
-
-tipoUsuarioSelect.addEventListener("change", () => {
-  if (tipoUsuarioSelect.value === "1") {
-    formularioCli.classList.remove("d-none");
-    formularioAdmin.classList.add("d-none");
-    formularioPro.classList.add("d-none");
-    
-  } else if(tipoUsuarioSelect.value ==="2") {
-	formularioCli.classList.add("d-none");
-    formularioAdmin.classList.add("d-none");
-    formularioPro.classList.remove("d-none");
-	} else if (tipoUsuarioSelect.value ==="3") {
-	formularioCli.classList.add("d-none");
-    formularioAdmin.classList.remove("d-none");
-    formularioPro.classList.add("d-none");
-  }
-});</script>
-
+</script>
 
 </html>

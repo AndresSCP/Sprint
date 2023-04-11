@@ -2,7 +2,7 @@
 
 	<div class="container">
 		<h1 class="text-center">Administrativo</h1>
-		<form action="SvCrearCliente" method="post" id="formularioAdmin">
+		<form action="SvCrearAdministrador" method="post" id="formularioAdmin">
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
@@ -33,7 +33,7 @@
 			</div>
 			<br>
 			<div class="form-group">
-				<button type="submit" class="btn btn-primary">Enviar</button>
+				<button type="submit" class="btn btn-primary">Ingresar</button>
 			</div>
 			<br>
 			<%-- Verificar si hay un mensaje y mostrarlo en un mensaje de Bootstrap --%>

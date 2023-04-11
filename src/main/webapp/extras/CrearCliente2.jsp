@@ -108,8 +108,7 @@
 
 
 <script>
-			
-			
+					
 			const apellidoInput = document.getElementById('apellido');
 		    const apellidoError = document.getElementById('apellido-error');
 		    
