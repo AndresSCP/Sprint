@@ -97,7 +97,10 @@ padding-bot: 100%;
 	background-image: url('../imagenes/celeste13.jpg');
 	background-size:cover;
 }
-
+/* Estilo de errores  */
+#error{
+	text-aline:center;
+}
 
 	
 
