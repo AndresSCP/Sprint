@@ -1,6 +1,10 @@
 
 <!--JSLT es una biblioteca de etiquetas personalizadas que se puede utilizar en páginas JSP para simplificar la escritura de código -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
+
 <!-- Navbar con La etiqueta incluide sirve para reutilizar el contenido en varias páginas JSP  -->
 <%@include file="extras/Navbar.jsp"%>
 <!DOCTYPE html>
@@ -38,21 +42,34 @@
 
 			<!-- lista de usuarios en una tabla con la etiqueta c:forEach para iterar sobre una lista de objetos de usuario-->
 			<tbody>
-				<!--<c:out value="${miListaUsuario}" /> con esto se valida si trae datos -->
-				<c:forEach var="usuario" items="${miListaUsuario}">
-
-
-					<tr>
-						<th>${usuario.runUsuario}</th>
-						<td>${usuario.nombreUsuario}</td>
-						<td>${usuario.fechaNacimientoUsuario}</td>
-						<td>${usuario.tipoUsuario}</td>
-
-					</tr>
-
+    			<!--<c:out value="${miListaUsuario}" /> con esto se valida si trae datos -->
+		    	<c:forEach var="usuario" items="${miListaUsuario}">
+				    <tr>
+				        <th>${usuario.runUsuario}</th>
+				        <td>${usuario.nombreUsuario}</td>
+				        <td>${usuario.fechaNacimientoUsuario}</td>
+				        <!-- <td>${usuario.tipoUsuario}</td> -->
+				        <c:choose>
+						  <c:when test="${usuario.tipoUsuario eq 1}">
+						    <td>Cliente</td>
+						  </c:when>
+						  <c:when test="${usuario.tipoUsuario eq 2}">
+						    <td>Profesional</td>
+						  </c:when>
+						  <c:when test="${usuario.tipoUsuario eq 3}">
+						    <td>Administrativo</td>
+						  </c:when>
+						  <c:otherwise>
+						    
+						  </c:otherwise>
+						</c:choose>
+				        
+				           
 				</c:forEach>
-			</tbody>
-		</table>
+		    	
+		    </tbody>
+			
+	</table>
 	</div>
 
 
