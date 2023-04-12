@@ -20,57 +20,93 @@
 <!-- Formulario Crear Usuario -->
 <body id="bodycapacitacion">
 	<div class="container">
-		<h1 class="text-center">Usuario</h1>
+
 
 		<!--La etiqueta form especifica que la información del formulario será enviada al servidor en una petición HTTP POST cuando se envíe el formulario.-->
-		<form action="SvCrearCliente" method="post">
-			<div class="row">
-				<div class="col-md-6">
+		<form action="SvUpdateProfesional" method="post">
+
+			<div class="row pt-5">
+				<h3 class="text-center">Usuario</h3>
+				<div class="col-md-4 col-sm-12">
 					<div class="form-group">
-						<div class="form-group">
-							<!--La etiqueta label: proporciona una etiqueta descriptiva para el campo de entrada -->
-							<label for="nombre">Nombres de Usuario:</label> <input
-								type="text" id="nombre" name="nombre" class="form-control"
-								maxlength="30" minlength="10" required> <span
-								id="nombre-error" class="text-danger d-none">Ingrese al
-								menos 10 caracteres.</span>
-						</div>
+
+						<label for="nombre" class="form-label">Nombres de Usuario:</label>
+						<input type="text" id="nombre" name="nombre" class="form-control"
+							maxlength="30" required value="${datosProfesional[4]}">
+
 					</div>
 				</div>
-				<div class="col-md-6">
-					
+				<div class="col-md-4 col-sm-12">
+					<div class="form-group">
+
+						<label for="run" class="form-label">Run:</label> <input
+							type="text" id="rut" name="rut" class="form-control"
+							maxlength="12" required pattern="\d{1,2}\.\d{3}\.\d{3}-[0-9kK]"
+							value="${datosProfesional[0]}">
+					</div>
+
+				</div>
+				<div class="col-md-4 col-sm-12">
+					<label for="fechaNac" class="form-label">Fecha de
+						Nacimiento</label> <input type="date" id="fechaNac" name="fechaNac"
+						class="form-control" required min="01-01-1900"
+						pattern="^(0[1-9]|[1-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-\d{4}$"
+						title="Ingrese la fecha en formato AAAA-MM-DD"
+						value="${datosProfesional[5]}">
+
 				</div>
 
-				<br>
 
-				<br>
 
 			</div>
 
-			<div class="row">
-				<div class="col-md-6">
+			<div class="row pt-5">
+				<h3 class="text-center">Profesional</h3>
+				<div class="col-md-4 col-sm-12">
 					<div class="form-group">
-						<label for="run" class="form-label">Run:</label> <input type="text" class="form-control" maxlength="12" 
-						required pattern="\d{1,2}\.\d{3}\.\d{3}-[0-9kK]" onblur="validarRut()">
-					</div>
 
+						<label for="titulo" class="form-label">Titulo Profesional:</label>
+						<input type="text" id="titulo" name="titulo" class="form-control"
+							maxlength="30" value="${datosProfesional[1]}" required>
+
+					</div>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-4 col-sm-12">
 					<div class="form-group">
-						<label for="fechaNac">Fecha de Nacimiento</label> <input
-							type="date" id="fechaNac" name="fechaNac" class="form-control"
-							required min="1900-01-01" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
-							title="Ingrese la fecha en formato AAAA-MM-DD">
+
+						<label for="fechaIn" class="form-label">Fecha de Ingreso:</label>
+						<input type="date" id="fechaIn" name="fechaIn"
+							class="form-control" min="01-01-1900" required
+							value="${datosProfesional[2]}"
+							pattern="^(0[1-9]|[1-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-\d{4}$"
+							title="Ingrese la fecha en formato DD-MM-AAAA">
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-12">
+					<div class="form-group">
+
+						<label for="proyecto" class="form-label">Proyecto:</label> <input
+							type="text" id="proyecto" name="proyecto" class="form-control"
+							maxlength="30" required value="${datosProfesional[3]}">
 
 					</div>
-
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-4 col-sm-12">
+					<div class="form-group">
 
+						<label for="tipo" class="form-label">Tipo:</label> <input
+							type="text" id="tipo" name="tipo" class="form-control"
+							maxlength="30" required value="${datosProfesional[6]}">
+
+					</div>
+				</div>
+			</div>
 			<br>
 
 			<!-- <div class="form-group"> -->
-				<!-- <button type="submit" class="btn btn-primary">Enviar</button> -->
+			<!-- <button type="submit" class="btn btn-primary">Enviar</button> -->
 			<!-- </div>  -->
 			<br>
 			<%-- Verificar si hay un mensaje y mostrarlo en un mensaje de Bootstrap --%>
@@ -102,6 +138,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous">
-	</script>
+	
+</script>
 <!-- <script src="js/dnone.js"></script> -->
 </html>

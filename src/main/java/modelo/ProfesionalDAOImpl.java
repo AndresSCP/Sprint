@@ -135,37 +135,30 @@ public class ProfesionalDAOImpl implements IProfesionalDao {
 	    }
         return listaProfesionales;
     }
-    public  List DatosProfesional(int run) throws Exception {
-    	
-    	String query = "SELECT p.*, u.nombre,u.fechaNac,u.tipo FROM profesionales p WHERE run=?";
-    	query += " JOIN usuarios u ";
-    	query += " ON p.run = u.run";
-    // Array objetos Profesional llamada listaProfesionales.
-        List datosProfesional = new ArrayList<>();
-        try (Statement statement = conexion.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(query);
-            
-    //Dentro del ciclo while, se recuperan los valores de cada columna de la fila actual del ResultSet, se utilizan para crear una instancia de un objeto Profesional, que se agrega a la lista listaProfesionales.
-            while (resultSet.next()) {
-                Object[] profesional = new Object[]{
-                    resultSet.getInt("run"),
-                    resultSet.getString("tituloProfesional"),
-                    resultSet.getString("fechaIngreso"),
-                    resultSet.getString("proyecto"),
-                    resultSet.getString("nombre"),
-                    resultSet.getString("fechaNac"),
-                    resultSet.getInt("tipo")
-                };
-
-                datosProfesional.add(profesional);
+    public List<Object> DatosProfesional(int run) throws Exception {
+        String query = "SELECT p.*, u.nombre, u.fechaNac, u.tipo FROM profesionales p ";
+        query += "JOIN usuarios u ";
+        query += "ON p.run = u.run WHERE p.run = ?";
+        List<Object> datosProfesional = new ArrayList<>();
+        try (PreparedStatement statement = conexion.prepareStatement(query)) {
+            statement.setInt(1, run);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                datosProfesional.add(resultSet.getInt("run"));
+                datosProfesional.add(resultSet.getString("tituloProfesional"));
+                datosProfesional.add(resultSet.getString("fechaIngreso"));
+                datosProfesional.add(resultSet.getString("proyecto"));
+                datosProfesional.add(resultSet.getString("nombre"));
+                datosProfesional.add(resultSet.getString("fechaNac"));
+                datosProfesional.add(resultSet.getInt("tipo"));
             }
             resultSet.close();
-           
-        } catch(Exception e) {
-	        throw e;
-	    }
+        } catch (Exception e) {
+            throw e;
+        }
         return datosProfesional;
     }
+
 
 
 
