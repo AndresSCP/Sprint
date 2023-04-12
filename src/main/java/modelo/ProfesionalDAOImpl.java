@@ -13,12 +13,14 @@ import modelo.*;
 import conexion.ConexionSingleton;
 import modelo.Profesional;
 
-
+// Clase que implementa la interfaz IProfesionalDao
 public class ProfesionalDAOImpl implements IProfesionalDao {
 
+// código que está inicializando la variable de instancia conexion con una conexión a la base de datos utilizando el patrón Singleton.
 	private Connection conexion = ConexionSingleton.conectar();
 	
  
+//método insertarProfesional se utiliza para insertar un objeto Profesional en dos tablas diferentes de una base de datos y maneja la transacción de forma segura para evitar errores.
     public void insertarProfesional(Profesional profesional) {
         try {
             String sqlUsuarios = "INSERT INTO usuarios (run, nombre, fechaNac, tipo) VALUES (?, ?, ?, ?)";
@@ -53,7 +55,7 @@ public class ProfesionalDAOImpl implements IProfesionalDao {
         }
     }
 
-
+// método actualizarProfesional de una clase ProfesionalDAOImpl. Este método actualiza la información de un profesional en la base de datos.
     public void actualizarProfesional(Profesional profesional) {
         try {
             String sqlProfesionales = "UPDATE profesionales SET tituloProfesional=?, fechaIngreso=?, proyecto=? WHERE run=?";
@@ -88,7 +90,7 @@ public class ProfesionalDAOImpl implements IProfesionalDao {
         }
     }
 
-
+//Este código corresponde al método eliminarProfesional de una clase ProfesionalDAOImpl. Este método elimina un profesional de la base de datos, dado su número de RUN.
     public void eliminarProfesional(int run) {
         try {
             String sql = "DELETE FROM profesionales WHERE run=?; DELETE FROM usuarios WHERE run=?";
@@ -101,15 +103,18 @@ public class ProfesionalDAOImpl implements IProfesionalDao {
         }
     }
     
+   //  método obtenerTodosLosProfesionales(), que recupera todos los registros de la tabla profesionales y la tabla usuarios relacionada por la columna run.
     public List<Profesional> obtenerTodosLosProfesionales() {
     	
     	String query = "SELECT p.*, u.nombre,u.fechaNac,u.tipo FROM profesionales ";
     	query += " JOIN usuarios ";
     	query += " ON p.run = u.run";
-    	
+    // Array objetos Profesional llamada listaProfesionales.
         List<Profesional> listaProfesionales = new ArrayList<>();
         try (Statement statement = conexion.createStatement()) {
             ResultSet resultSet = statement.executeQuery(query);
+            
+    //Dentro del ciclo while, se recuperan los valores de cada columna de la fila actual del ResultSet, se utilizan para crear una instancia de un objeto Profesional, que se agrega a la lista listaProfesionales.
             while (resultSet.next()) {
                 Profesional profesional = new Profesional(
                 		
@@ -125,6 +130,7 @@ public class ProfesionalDAOImpl implements IProfesionalDao {
                
                 listaProfesionales.add(profesional);
             }
+           //Si ocurre una excepción de tipo SQLException, se captura y se imprime el mensaje de error en la consola mediante el método printStackTrace().
         } catch (SQLException e) {
             e.printStackTrace();
         }

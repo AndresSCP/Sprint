@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.ArrayList;
 import interfaces.ICapacitacionDao;
 
+// Clase capacitacion
 public class Capacitacion{
 
+	//Atributos de clase Capacitacion
 	private int id;
 	private String nombreCapacitacion;
 	private long rut;
@@ -32,7 +34,7 @@ public class Capacitacion{
 		this.duracion = duracion;
 		this.cantidadAsistentes = cantidadAsistentes;
 	}
-
+	// Getter and Setter
 	public int getId() {
 		return id;
 	}
@@ -98,7 +100,7 @@ public class Capacitacion{
 	}
 	
 	
-
+ //Metodo ToString devuelve una representación en formato de cadena de texto del objeto.
 	@Override
 	public String toString() {
 		return "Capacitacion id:" + id + ", Nombre:" + nombreCapacitacion + ", Rut:" + rut + ", Dia:" + dia

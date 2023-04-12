@@ -4,20 +4,24 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+// clase llamada ConexionSingleton que implementa el patrón Singleton se encarga de crear y mantener una única instancia de la conexión a la base de datos.
+
 public class ConexionSingleton {
-    private static ConexionSingleton instance = new ConexionSingleton();
-    private static final String URL = "jdbc:mysql://localhost:3306/sprint_5";
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String USER = "root";
-    private static final String PASSWORD = "12345";
+
+	// variables y constantes son utilizadas para establecer una conexión a la base de datos MySQL a través del patrón de diseño Singleton en la clase ConexionSingleton
+    private static ConexionSingleton instance = new ConexionSingleton(); //"Patron Singleton", que garantiza que sólo haya una única instancia de la clase en todo el programa.
+    private static final String URL = "jdbc:mysql://localhost:3306/sprint_5";//constante que almacena la dirección URL de la base de datos que se desea conectar.
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";//constante que especifica el controlador JDBC que se utilizará para la conexión a la base de datos
+    private static final String USER = "root"; //usuario de la base de datos
+    private static final String PASSWORD = "12345"; // Clave de la Base de datos.
 
     private Connection connection;
 
     private ConexionSingleton() {
         try {
-            Class.forName(DRIVER);
-            this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch (ClassNotFoundException | SQLException e) {
+            Class.forName(DRIVER); //carga el driver de MySQL mediante el método Class.forName(DRIVER)
+            this.connection = DriverManager.getConnection(URL, USER, PASSWORD);//Luego, se establece la conexión con la base de datos a través del método DriverManager.getConnection(URL, USER, PASSWORD)
+        } catch (ClassNotFoundException | SQLException e) { //si se produce una excepción el programa saltará al bloque catch.
             throw new RuntimeException("Error al conectar a la base de datos.", e);
         }
     }

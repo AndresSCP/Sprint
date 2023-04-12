@@ -6,20 +6,31 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import conexion.ConexionSingleton;
-import interfaces.IAdministrativoDao;
 import modelo.Administrativo;
+import interfaces.IAdministrativoDao;
 
+
+// clase llamada AdministrativoDaoImpl que implementa la interfaz IAdministrativoDao.
 public class AdministrativoDaoImpl implements IAdministrativoDao {
 
 	private Connection conexion = ConexionSingleton.conectar();
+	private Connection conn;
 
+	public AdministrativoDaoImpl() {
+		conn = ConexionSingleton.conectar();
+	}
+
+	
+	
+ //método recibe como parámetro un objeto "Administrativo" y realiza la operación de registrar un nuevo administrativo en la base de datos.
+
+	@Override
 	public void registrarAdministrativo(Administrativo administrativo) {
 		try {
 			String sqlUsuarios = "INSERT INTO usuarios (run, nombre, fechaNac, tipo) VALUES (?, ?, ?, ?)";
-			String sqlAdministrativos = "INSERT INTO administrativos (run, area, exPrevia, email) VALUES (?, ?, ?, ?)";
+			String sqlAdministrativos = "INSERT INTO administrativos ( area, exPrevia, email) VALUES (?, ?, ?, ?)";
 			PreparedStatement statementUsuarios = conexion.prepareStatement(sqlUsuarios);
 			statementUsuarios.setInt(1, administrativo.getRunUsuario());
 			statementUsuarios.setString(2, administrativo.getNombreUsuario());
@@ -28,10 +39,9 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 			statementUsuarios.executeUpdate();
 
 			PreparedStatement statementAdministrativos = conexion.prepareStatement(sqlAdministrativos);
-			statementAdministrativos.setInt(1, administrativo.getRun());
-			statementAdministrativos.setString(2, administrativo.getArea());
-			statementAdministrativos.setString(3, administrativo.getExpPrevia());
-			statementAdministrativos.setString(4, administrativo.getEmail());
+			statementAdministrativos.setString(1, administrativo.getArea());
+			statementAdministrativos.setString(2, administrativo.getExpPrevia());
+			statementAdministrativos.setString(3, administrativo.getEmail());
 			statementAdministrativos.executeUpdate();
 
 			conexion.commit();
@@ -46,7 +56,8 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 			e.printStackTrace();
 		}
 	}
-
+ 
+	//método recibe como parámetro un objeto "Administrativo" y actualiza los datos de ese administrativo en la base de datos.
 	@Override
 	public void actualizarAdministrativo(Administrativo administrativo) {
 		try {
@@ -63,10 +74,10 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 			statementUsuarios.executeUpdate();
 
 			PreparedStatement statementAdministrativos = conexion.prepareStatement(sqlAdministrativos);
-			statementAdministrativos.setInt(1, administrativo.getRun());
-			statementAdministrativos.setString(2, administrativo.getArea());
-			statementAdministrativos.setString(3, administrativo.getExpPrevia());
-			statementAdministrativos.setString(4, administrativo.getEmail());
+
+			statementAdministrativos.setString(1, administrativo.getArea());
+			statementAdministrativos.setString(2, administrativo.getExpPrevia());
+			statementAdministrativos.setString(3, administrativo.getEmail());
 			statementAdministrativos.executeUpdate();
 
 			conexion.commit();
@@ -81,6 +92,8 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 			e.printStackTrace();
 		}
 	}
+	
+	// método recibe como parámetro un entero "run" que representa el RUN del administrativo que se desea eliminar de la base de datos.
 
 	@Override
 	public void eliminarAdministrativo(int run) {
@@ -94,40 +107,71 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 			e.printStackTrace();
 		}
 	}
+//método es obtener una lista de todos los administrativos registrados en la base de datos.
 
-	@Override
-	public List<Administrativo> obtenerAdministrativos() {
-
-	    String query = "SELECT a.*, u.nombre,u.fechaNac,u.tipo FROM administrativos a";
-	    query += " JOIN usuarios u";
-	    query += " ON a.run = u.run";
-
-	    List<Administrativo> listaAdministrativos = new ArrayList<>();
-
-	    try (Statement statement = conexion.createStatement()) {
-	        ResultSet resultSet = statement.executeQuery(query);
-	        while (resultSet.next()) {
-	        	Administrativo administrativo = new Administrativo (
-	            		
-	                resultSet.getInt("run"),
-	                resultSet.getString("nombre"),
-	                resultSet.getString("fechaNac"),
-	                resultSet.getInt("tipo"),
-	                resultSet.getString("area"),
-	                resultSet.getString("exPrevia"),
-	                resultSet.getString("email")                       
-	            );
-	            listaAdministrativos.add(administrativo);
+	@Override	
+	public ArrayList<Administrativo> listaAdministrativos()throws Exception {
+		String sql = "SELECT u.run,u.nombre,u.fechaNac,u.tipo,a.area,a.expPrevia,a.email FROM administrativos a";
+		sql += " JOIN usuarios u";
+		sql += " ON a.run = u.run";
+		ArrayList<Administrativo> listaAdm = new ArrayList<>();
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+		    while(rs.next()) {
+		    	Administrativo administrativo = new Administrativo();
+		    		            
+	            administrativo.setRunUsuario(rs.getInt("run"));
+	            administrativo.setNombreUsuario(rs.getString("nombre"));
+	            administrativo.setFechaNacimientoUsuario(rs.getString("fechaNac"));
+	            administrativo.setTipoUsuario(rs.getInt("tipo")); 
+	            administrativo.setArea(rs.getString("area"));
+	            administrativo.setExpPrevia(rs.getString("expPrevia"));
+	            administrativo.setEmail(rs.getString("email"));
+	            listaAdm.add(administrativo);
+	            System.out.println(administrativo);
+	            
 	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
+	        rs.close();
+	    } catch(Exception e) {
+	        throw e;
 	    }
-	    return listaAdministrativos;
+	    return listaAdm;
 	}
 
-//	@Override
-//	public Administrativo obtenerAdministrativoPorId(int id) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+
+
+	@Override
+	public Administrativo obtenerAdministrativoPorId(int id) {
+		String sql = "SELECT u.run,u.nombre,u.fechaNac,u.tipo,a.area,a.expPrevia,a.email FROM administrativos a WHERE u.run =?";
+		sql += " JOIN usuarios u";
+		sql += " ON a.run = u.run";
+
+		Administrativo administrativo = new Administrativo();
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1,id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				administrativo.setRunUsuario(rs.getInt("run"));
+				administrativo.setNombreUsuario(rs.getString("nombre"));
+				administrativo.setFechaNacimientoUsuario(rs.getString("fechaNac"));
+				administrativo.setTipoUsuario(rs.getInt("tipo"));
+				administrativo.setArea(rs.getString("area"));
+	            administrativo.setExpPrevia(rs.getString("expPrevia"));
+	            administrativo.setEmail(rs.getString("email"));        
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return administrativo;
+		
+	}
+		
 }
+
+
+
+
