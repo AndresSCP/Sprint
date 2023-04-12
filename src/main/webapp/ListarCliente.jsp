@@ -58,10 +58,11 @@
                             <td>${cliente.comuna}</td>
                             <td>${cliente.edad}</td>
                             <td>
-				                <form method="post" action="SvCrearCliente">
+
+				                <form method="post" action="SvObtenerCliente">
 				                    <input type="hidden" name="rut" id="rut" value="${cliente.runUsuario}">
 				                    <button type="submit" class="btn btn-primary">
-				                        <i class="bi bi-pencil"></i>
+				                        <i class="bi bi-pencil"></i>Editar
 				                    </button>
 				                </form>
 				                <form method="post" action="SvEliminarCliente">

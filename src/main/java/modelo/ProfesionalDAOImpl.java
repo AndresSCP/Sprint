@@ -104,39 +104,60 @@ public class ProfesionalDAOImpl implements IProfesionalDao {
     }
     
    //  método obtenerTodosLosProfesionales(), que recupera todos los registros de la tabla profesionales y la tabla usuarios relacionada por la columna run.
-    public List<Profesional> obtenerTodosLosProfesionales() {
+    public  List obtenerTodosLosProfesionales() throws Exception {
     	
-    	String query = "SELECT p.*, u.nombre,u.fechaNac,u.tipo FROM profesionales ";
-    	query += " JOIN usuarios ";
+    	String query = "SELECT p.*, u.nombre,u.fechaNac,u.tipo FROM profesionales p ";
+    	query += " JOIN usuarios u ";
     	query += " ON p.run = u.run";
     // Array objetos Profesional llamada listaProfesionales.
-        List<Profesional> listaProfesionales = new ArrayList<>();
+        List listaProfesionales = new ArrayList<>();
         try (Statement statement = conexion.createStatement()) {
             ResultSet resultSet = statement.executeQuery(query);
             
     //Dentro del ciclo while, se recuperan los valores de cada columna de la fila actual del ResultSet, se utilizan para crear una instancia de un objeto Profesional, que se agrega a la lista listaProfesionales.
             while (resultSet.next()) {
-                Profesional profesional = new Profesional(
-                		
-                        resultSet.getInt("run"),
-                        resultSet.getString("tituloProfesional"),
-                        resultSet.getString("fechaIngreso"),
-                        resultSet.getString("proyecto"),
-                        resultSet.getString("nombre"),
-                        resultSet.getString("fechaNac"),
-                        resultSet.getInt("tipo")
-                       
-                );
-               
+                Object[] profesional = new Object[]{
+                    resultSet.getInt("run"),
+                    resultSet.getString("tituloProfesional"),
+                    resultSet.getString("fechaIngreso"),
+                    resultSet.getString("proyecto"),
+                    resultSet.getString("nombre"),
+                    resultSet.getString("fechaNac"),
+                    resultSet.getInt("tipo")
+                };
+
                 listaProfesionales.add(profesional);
             }
-           //Si ocurre una excepción de tipo SQLException, se captura y se imprime el mensaje de error en la consola mediante el método printStackTrace().
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            resultSet.close();
+           
+        } catch(Exception e) {
+	        throw e;
+	    }
         return listaProfesionales;
     }
-
+    public List<Object> DatosProfesional(int run) throws Exception {
+        String query = "SELECT p.*, u.nombre, u.fechaNac, u.tipo FROM profesionales p ";
+        query += "JOIN usuarios u ";
+        query += "ON p.run = u.run WHERE p.run = ?";
+        List<Object> datosProfesional = new ArrayList<>();
+        try (PreparedStatement statement = conexion.prepareStatement(query)) {
+            statement.setInt(1, run);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                datosProfesional.add(resultSet.getInt("run"));
+                datosProfesional.add(resultSet.getString("tituloProfesional"));
+                datosProfesional.add(resultSet.getString("fechaIngreso"));
+                datosProfesional.add(resultSet.getString("proyecto"));
+                datosProfesional.add(resultSet.getString("nombre"));
+                datosProfesional.add(resultSet.getString("fechaNac"));
+                datosProfesional.add(resultSet.getInt("tipo"));
+            }
+            resultSet.close();
+        } catch (Exception e) {
+            throw e;
+        }
+        return datosProfesional;
+    }
 
 
 
