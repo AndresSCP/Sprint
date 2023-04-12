@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import conexion.ConexionSingleton;
 import modelo.Administrativo;
+import modelo.Usuario;
 import interfaces.IAdministrativoDao;
 
 
@@ -27,23 +28,52 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
  //método recibe como parámetro un objeto "Administrativo" y realiza la operación de registrar un nuevo administrativo en la base de datos.
 
 	@Override
+//	public void registrarAdministrativo(Administrativo administrativo) {
+//		try {
+//			String sqlUsuarios = "INSERT INTO usuarios (run, nombre, fechaNac, tipo) VALUES (?, ?, ?, ?)";
+//			String sqlAdministrativos = "INSERT INTO administrativos ( area, exPrevia, email) VALUES (?, ?, ?, ?)";
+//			PreparedStatement statementUsuarios = conexion.prepareStatement(sqlUsuarios);
+//			statementUsuarios.setInt(1, administrativo.getRunUsuario());
+//			statementUsuarios.setString(2, administrativo.getNombreUsuario());
+//			statementUsuarios.setString(3, administrativo.getFechaNacimientoUsuario());
+//			statementUsuarios.setInt(4, administrativo.getTipoUsuario());
+//			statementUsuarios.executeUpdate();
+//
+//			PreparedStatement statementAdministrativos = conexion.prepareStatement(sqlAdministrativos);
+//			statementAdministrativos.setString(1, administrativo.getArea());
+//			statementAdministrativos.setString(2, administrativo.getExpPrevia());
+//			statementAdministrativos.setString(3, administrativo.getEmail());
+//			statementAdministrativos.executeUpdate();
+//
+//			conexion.commit();
+//			conexion.setAutoCommit(true);
+//		} catch (SQLException e) {
+//			try {
+//				conexion.rollback();
+//				conexion.setAutoCommit(true);
+//			} catch (SQLException ex) {
+//				ex.printStackTrace();
+//			}
+//			e.printStackTrace();
+//		}
+//	}
+	
 	public void registrarAdministrativo(Administrativo administrativo) {
-		try {
-			String sqlUsuarios = "INSERT INTO usuarios (run, nombre, fechaNac, tipo) VALUES (?, ?, ?, ?)";
-			String sqlAdministrativos = "INSERT INTO administrativos ( area, exPrevia, email) VALUES (?, ?, ?, ?)";
-			PreparedStatement statementUsuarios = conexion.prepareStatement(sqlUsuarios);
-			statementUsuarios.setInt(1, administrativo.getRunUsuario());
-			statementUsuarios.setString(2, administrativo.getNombreUsuario());
-			statementUsuarios.setString(3, administrativo.getFechaNacimientoUsuario());
-			statementUsuarios.setInt(4, administrativo.getTipoUsuario());
-			statementUsuarios.executeUpdate();
-
-			PreparedStatement statementAdministrativos = conexion.prepareStatement(sqlAdministrativos);
-			statementAdministrativos.setString(1, administrativo.getArea());
-			statementAdministrativos.setString(2, administrativo.getExpPrevia());
-			statementAdministrativos.setString(3, administrativo.getEmail());
-			statementAdministrativos.executeUpdate();
-
+	    Connection conn = null;
+	    PreparedStatement stmt = null;
+	    try {
+	        conn = getConnection();
+	        String query = "INSERT INTO administrativos (run, nombre, fechaNac, tipo, area, exPrevia, email) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	        stmt = conn.prepareStatement(query);
+	        stmt.setInt(1, administrativo.getRunUsuario());
+	        stmt.setString(2, administrativo.getNombreUsuario());
+	        stmt.setString(3, administrativo.getFechaNacimientoUsuario());
+	        stmt.setInt(4, administrativo.getTipoUsuario());
+	        stmt.setString(5, administrativo.getArea());
+	        stmt.setString(6, administrativo.getExpPrevia());
+	        stmt.setString(7, administrativo.getEmail());
+	        stmt.executeUpdate();
+	        
 			conexion.commit();
 			conexion.setAutoCommit(true);
 		} catch (SQLException e) {
@@ -56,7 +86,15 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 			e.printStackTrace();
 		}
 	}
+	
  
+	private Connection getConnection() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
 	//método recibe como parámetro un objeto "Administrativo" y actualiza los datos de ese administrativo en la base de datos.
 	@Override
 	public void actualizarAdministrativo(Administrativo administrativo) {
@@ -143,10 +181,8 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 
 	@Override
 	public Administrativo obtenerAdministrativoPorId(int id) {
-		String sql = "SELECT u.run,u.nombre,u.fechaNac,u.tipo,a.area,a.expPrevia,a.email FROM administrativos a WHERE u.run =?";
-		sql += " JOIN usuarios u";
-		sql += " ON a.run = u.run";
-
+		String sql = "SELECT u.run,u.nombre,u.fechaNac,u.tipo,a.area,a.expPrevia,a.email FROM administrativos a JOIN usuarios u ON a.run = u.run WHERE u.run =?;"; 
+        
 		Administrativo administrativo = new Administrativo();
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -161,7 +197,6 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 	            administrativo.setExpPrevia(rs.getString("expPrevia"));
 	            administrativo.setEmail(rs.getString("email"));        
 			}
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -7,10 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import interfaces.IAdministrativoDao;
+import javax.servlet.http.HttpSession;
 import modelo.AdministrativoDaoImpl;
 import modelo.Administrativo;
-import modelo.Usuario;
 
 
 /**
@@ -35,62 +34,64 @@ public class SvEditarAdministrativo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int runUsuario = Integer.parseInt(request.getParameter("runUsuario"));
-		System.out.println(runUsuario);
+		/* System.out.println(runUsuario); */
 		AdministrativoDaoImpl administrativoDao = new AdministrativoDaoImpl();
-		
+
 		Administrativo administrativo = administrativoDao.obtenerAdministrativoPorId(runUsuario);
-		
+			 
 		request.setAttribute("administrativo",administrativo);
 		
-		request.getRequestDispatcher("ListarAdministrativos.jsp").forward(request, response);
+		request.getRequestDispatcher("EditarAdministrativo.jsp").forward(request, response);
 		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    //Obtengo los valores que vienen del post del formulario crearUsuario.jsp
-	    String area = request.getParameter("area");
-	    String exPrevia = request.getParameter("exPrevia");
-	    String email = request.getParameter("email");
+		// TODO Auto-generated method stub
+		int runUsuario = Integer.parseInt(request.getParameter("run"));
+		String nombre = request.getParameter("nombreUsuario");
+		String fechaNacimiento = request.getParameter("fechaNacimientoUsuario");
+		int tipoUsuario = Integer.parseInt(request.getParameter("tipoUsuario"));
+		String area = request.getParameter("area");
+		String expPrevia = request.getParameter("expPrevia");
+		String email = request.getParameter("email");
 
-	    //Creo el usuario y le asigno los valores recibidos por post
-	    Administrativo administrativo = new Administrativo();
-	    administrativo.setArea(area);
-	    administrativo.setExpPrevia(exPrevia);
-	    administrativo.setEmail(email);
+		Administrativo administrativo = new Administrativo();
+		
+		administrativo.setRunUsuario(runUsuario); // obtén el RUN del administrativo que se está editando
+		administrativo.setNombreUsuario(nombre);
+		administrativo.setFechaNacimientoUsuario(fechaNacimiento);
+		administrativo.setTipoUsuario(tipoUsuario);
+		administrativo.setArea(area);
+		administrativo.setExpPrevia(expPrevia);
+		administrativo.setEmail(email);
 
-	    //Obtengo los valores que vienen del post del formulario crearUsuario.jsp
-	    String runCompleto = request.getParameter("run");
-	    if (runCompleto == null) {
-	        // Manejar el caso en que el campo rut no se haya ingresado
-	        // En este ejemplo, redirigimos al usuario de vuelta al formulario con un mensaje de error
-	        request.getSession().setAttribute("mensaje", "Debe ingresar un rut");
-	        request.getRequestDispatcher("CrearUsuario.jsp").forward(request, response);
-	        return;
-	    }
-	    String runSinDigito = runCompleto.substring(0, runCompleto.length() - 2);
-	    Integer run = Integer.parseInt(runSinDigito);
-	    String nombre = request.getParameter("nombre");
-	    String fechaNac = request.getParameter("fechaNac");
-	    String tipoUsuario = request.getParameter("tipo_usuario");
-	    int tipoUsuarioInt = Integer.parseInt(tipoUsuario);
+        AdministrativoDaoImpl dao = new AdministrativoDaoImpl();
+        dao.actualizarAdministrativo(administrativo);
 
-	    //Creo el usuario y le asigno los valores recibidos por post
-	    Usuario user = new Usuario();
-	    user.setRunUsuario(run);
-	    user.setNombreUsuario(nombre);
-	    user.setFechaNacimientoUsuario(fechaNac);
-	    user.setTipoUsuario(tipoUsuarioInt);
+		// redirige a la página de confirmación o a la página de detalles del administrativo actualizado
+        
+		// Obtener la sesión actual
+        HttpSession session = request.getSession();
 
-	    //Creo el objeto Dao que tendra los metodos CRUD entre ellos Insertar
-	    try {
-	        IAdministrativoDao dao = new AdministrativoDaoImpl();
-	        dao.registrarAdministrativo(administrativo);// Como todos los metodos dao lanzan excepciones deben colocarse en un try catch
-	    } catch (Exception e) {
-	        System.out.println(e.getMessage());
-	    }
+        // Obtener un atributo de sesión
+        String username = (String) session.getAttribute("username");
+        
+        if (session.getAttribute("username") != null) {
+        	// Llamamos a la página JSP del formulario de Crear Usuario
+        	request.getSession().setAttribute("mensaje", "Los datos fueron registrados satisfactoriamente.");
+            request.getRequestDispatcher("CrearUsuario.jsp").forward(request, response);
+        }else{
+        	//Se redirige la pagina a login
+        	request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
 	}
-
 }
+
+
+
+	
+

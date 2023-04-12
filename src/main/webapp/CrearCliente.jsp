@@ -10,7 +10,7 @@
 		  crossorigin="anonymous">
 	<link rel="stylesheet" href="css/Style.css">
 	
-<%-- 	<%@include file="extras/Navbar.jsp" %> --%>
+	<%@include file="extras/Navbar.jsp" %>
 </head>
 <body id="bodycliente">
 	<div class="container">
@@ -113,6 +113,8 @@
 	</div>
 
 	<br>
+
+	<%@include file="extras/footer.jsp" %>
 </body>
 
 <script
