@@ -3,7 +3,7 @@
 
 	<div class="container">
 		<h1 class="text-center"> Cliente</h1>
-		<form action="svCrearCliente" method="post" id ="formulario-cli">
+		<form action="SvCrearCliente" method="post" id ="formulario-cli">
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
@@ -45,7 +45,7 @@
 					<div class="form-group">
   						<label for="sistSalud" class="form-label">Sistema de Salud:</label>
                     <select class="form-select" id="sistSalud" name="sistSalud" required>
-                        <option selected disabled value="">Seleccione una Opción</option>
+                        <option selected disabled value="">Seleccione una Opciï¿½n</option>
                         <option value="1">Fonasa</option>
                         <option value="2">Isapre</option>
                      </select>
@@ -54,7 +54,7 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						  <label for="direccion">Dirección</label>
+						  <label for="direccion">Direcciï¿½n</label>
 						  <input type="text" id="direccion" name="direccion" class="form-control" maxlength="70" required>
 						         
 					</div>
@@ -87,7 +87,7 @@
 			<br>
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary">Ingresar </button>
-				<button type="submit" class="btn btn-primary">Modificar</button>
+<!-- 		<button type="submit" class="btn btn-primary">Modificar</button> -->
 			</div>
 			<br>
 			<%-- Verificar si hay un mensaje y mostrarlo en un mensaje de Bootstrap --%>
@@ -98,7 +98,7 @@
 			      <span aria-hidden="true">&times;</span>
 			    </button>
 			  </div>
-			  <%-- Eliminar el mensaje de la sesión de HTTP para evitar que se muestre de nuevo --%>
+			  <%-- Eliminar el mensaje de la sesiï¿½n de HTTP para evitar que se muestre de nuevo --%>
 			  ${sessionScope.remove("mensaje")}
 			</c:if>
 		</form>

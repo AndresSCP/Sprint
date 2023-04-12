@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <html>
 <head>
 <link
@@ -17,10 +18,11 @@
 </head>
 <body id="bodycontacto">
 	<%@include file="extras/Navbar.jsp"%>
+	
 	<body style="background-color: Lavender;">
 	<div class="container">
 		<h1 class="text-center">Formulario de Contacto</h1>
-		<form id="formContacto" method="POST" action="index.jsp">
+  <form id="formContacto" action=SvContacto method="post">
   <div class="form-group">
     <label for="nombre">Nombre de Contacto</label>
     <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
@@ -43,14 +45,20 @@
   </div>
   <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
+			<c:if test="${not empty sessionScope.mensaje}">
+			  <div class="alert alert-success alert-dismissible fade show" role="alert">
+			    <strong>${sessionScope.mensaje}</strong>
+			    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			      <span aria-hidden="true">&times;</span>
+			    </button>
+			  </div>
+			  <%-- Eliminar el mensaje de la sesión de HTTP para evitar que se muestre de nuevo --%>
+			  ${sessionScope.remove("mensaje")}
+			</c:if>
 		
 	</div>
 	
 		
-
-
-
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 <script src="js/validaFormContacto.js"></script>
@@ -62,8 +70,6 @@
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
 			integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
 			crossorigin="anonymous"></script>
-
-
 </body>
 <footer><%@include file="extras/footer.jsp"%></footer>
 </html>

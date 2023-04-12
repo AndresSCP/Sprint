@@ -178,6 +178,10 @@ public class DaoClienteImp  implements IClienteDAO {
 		}
 		return lista;
 		}
+
+	
+	
+	
 	 /**
 	 *Metodo que me permitira obtener todos los datos dado un rut selecciona en una lista de Clientes
 	 */
@@ -218,7 +222,6 @@ public class DaoClienteImp  implements IClienteDAO {
 			    return listaClientes.get(0);
 			}
 
-
 		 
 		}catch(Exception e) {
 		    throw e;
@@ -232,8 +235,7 @@ public class DaoClienteImp  implements IClienteDAO {
 		        }
 		    }
 		}
-
-		return lista;
+		
 		}
 
 	

@@ -1,4 +1,5 @@
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<div class="container">
 		<h1 class="text-center">Profesional</h1>
 		<form action="SvCrearProfesional" method="post" id="formularioPro">
