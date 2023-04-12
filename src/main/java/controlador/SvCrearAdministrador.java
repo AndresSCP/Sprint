@@ -18,6 +18,7 @@ import modelo.Usuario;
 @WebServlet("/SvCrearAdministrador")
 public class SvCrearAdministrador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private IAdministrativoDao administrativoDao;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -53,43 +54,23 @@ public class SvCrearAdministrador extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//Obtengo los valores que vienen del post del formulario crearUsuario.jsp
-		String area = request.getParameter("area");
-		String exPrevia = request.getParameter("exPrevia");
-		String email = request.getParameter("email");
-        
-        //Creo el usuario y le asigno los valores recibidos por post
-        Administrativo administrativo = new Administrativo();
-
-        administrativo.setArea(area);
-		administrativo.setExpPrevia(exPrevia);
-		administrativo.setEmail(email);
 		
-		//Obtengo los valores que vienen del post del formulario crearUsuario.jsp
-//		String runCompleto = request.getParameter("run");
-//		String runSinDigito = runCompleto.substring(0, runCompleto.length() - 2);
-		
-		Integer run = Integer.parseInt(request.getParameter("run"));
-		String nombre = request.getParameter("nombre");
-        String fechaNac = request.getParameter("fechaNac");
-        Integer tipoUsuario = Integer.parseInt(request.getParameter("tipoUsuario"));
-        
-        //Creo el usuario y le asigno los valores recibidos por post
-        Usuario user = new Usuario();
+		    String nombre = request.getParameter("nombre");
+			String runCompleto = request.getParameter("run");
+//			String run = runCompleto.substring(0, runCompleto.length() - 2);
+			Integer run = Integer.parseInt(runCompleto.substring(0, runCompleto.length() - 2));
+//	        int run = Integer.parseInt(request.getParameter("run"));
+	        String fechaNacimiento = request.getParameter("fechaNacimiento");
+	        int tipo = Integer.parseInt(request.getParameter("tipo"));
+	        String area = request.getParameter("area");
+	        String expPrevia = request.getParameter("expPrevia");
+	        String email = request.getParameter("email");
 
-        user.setRunUsuario(run);
-		user.setNombreUsuario(nombre);
-		user.setFechaNacimientoUsuario(fechaNac);
-		user.setTipoUsuario(tipoUsuario);
+	        // Creamos el objeto Administrativo con los datos del formulario
+	        Administrativo administrativo = new Administrativo(run, nombre, fechaNacimiento, tipo, area, expPrevia, email);
 
-        //Creo el objeto Dao que tendra los metodos CRUD entre ellos Insertar
-		try {
-			IAdministrativoDao  dao = new AdministrativoDaoImpl();
-			dao.registrarAdministrativo(administrativo);// Como todos los metodos dao lanzan excepciones deben colocarse en un try catch
-		} catch (Exception  e) {
-			 System.out.println(e.getMessage());
-       }
+	        // Llamamos al método del dao para registrar al administrativo
+	        administrativoDao.registrarAdministrativo(administrativo);
 	}
 
 }

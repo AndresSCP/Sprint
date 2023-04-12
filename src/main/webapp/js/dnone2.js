@@ -5,9 +5,7 @@
 			  } else {
 			    document.getElementById("run").classList.remove("is-invalid");
 			  }
-			
-			
-			
+						
 		    const inputNombre = document.querySelector('#nombre');
 		    const nombreError = document.querySelector('#nombre-error');
 
@@ -21,27 +19,32 @@
 		    });
 		    
 function displayFormFields() {
-  var tipoUsuario = document.getElementById("tipoUsuario");
-  var formularioCli = document.getElementById("formulario-cli");
-  var formularioPro = document.getElementById("formularioPro");
-  var formularioAdmin = document.getElementById("formularioAdmin");
+  const tipoUsuario = document.getElementById("tipoUsuario");
+  const formularioCli = document.getElementById("formulario-cli");
+  const formularioPro = document.getElementById("formularioPro");
+  const formularioAdmin = document.getElementById("formularioAdmin");
+  const formularioUsuario = document.getElementById("formulario-usuario")
   
   if (tipoUsuario.value === "1") {
     formularioCli.classList.remove("d-none");
     formularioPro.classList.add("d-none");
     formularioAdmin.classList.add("d-none");
+    formularioUsuario.classList.add("d-none");
   } else if (tipoUsuario.value === "2") {
     formularioCli.classList.add("d-none");
     formularioPro.classList.remove("d-none");
     formularioAdmin.classList.add("d-none");
+    formularioUsuario.classList.add("d-none");
   } else if (tipoUsuario.value === "3") {
     formularioCli.classList.add("d-none");
     formularioPro.classList.add("d-none");
     formularioAdmin.classList.remove("d-none");
+    formularioUsuario.classList.add("d-none");
   } else {
     formularioCli.classList.add("d-none");
     formularioPro.classList.add("d-none");
     formularioAdmin.classList.add("d-none");
+	formularioUsuario.classList.remove("d-none"); 
   }
 };
 

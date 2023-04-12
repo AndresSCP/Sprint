@@ -2,21 +2,21 @@
 
 	<div class="container">
 		<h1 class="text-center">Administrativo</h1>
-		<form action="SvCrearAdministrador" method="post" id="formularioAdmin">
+		<form action="SvCrearAdministrador" method="post" id="formularioAdmin" >
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
 						<div class="form-group">
-						    <label for="nombre">Area: </label>
-						    <input type="text" id="nombre" name="nombre" class="form-control" maxlength="30" minlength="5" required>
+						    <label for="area">Area: </label>
+						    <input type="text" id="area" name="area" class="form-control" maxlength="30" minlength="5" required>
 						    <span id="nombre-error" class="text-danger d-none">Ingrese al menos 5 caracteres.</span>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-					    <label for="apellido">Experiencia Previa: </label>
-					    <input type="text" id="apellido" name="apellido" class="form-control" maxlength="30" minlength="5" required>
+					    <label for="expPrevia">Experiencia Previa: </label>
+					    <input type="text" id="expPrevia" name="expPrevia" class="form-control" maxlength="30" minlength="5" required>
 					    <span id="apellido-error" class="text-danger" style="display: none;">Ingrese al menos 5 caracteres.</span>
 					</div>
 				</div>
@@ -25,8 +25,8 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-  						<label for="telefono" class="form-label">Email:</label>
- 						 <input type="text" id="telefono" name="telefono" class="form-control" maxlength="15" required >
+  						<label for="email" class="form-label">Email:</label>
+ 						 <input type="text" id="email" name="email" class="form-control" maxlength="15" required >
   				</div>
 					
 				</div>

@@ -74,14 +74,15 @@ public class SvEditarAdministrativo extends HttpServlet {
 	    Integer run = Integer.parseInt(runSinDigito);
 	    String nombre = request.getParameter("nombre");
 	    String fechaNac = request.getParameter("fechaNac");
-	    Integer tipoUsuario = Integer.parseInt(request.getParameter("tipoUsuario"));
+	    String tipoUsuario = request.getParameter("tipo_usuario");
+	    int tipoUsuarioInt = Integer.parseInt(tipoUsuario);
 
 	    //Creo el usuario y le asigno los valores recibidos por post
 	    Usuario user = new Usuario();
 	    user.setRunUsuario(run);
 	    user.setNombreUsuario(nombre);
 	    user.setFechaNacimientoUsuario(fechaNac);
-	    user.setTipoUsuario(tipoUsuario);
+	    user.setTipoUsuario(tipoUsuarioInt);
 
 	    //Creo el objeto Dao que tendra los metodos CRUD entre ellos Insertar
 	    try {
