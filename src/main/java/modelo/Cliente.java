@@ -138,10 +138,9 @@ public class Cliente extends Usuario {
      * @param afp  el nuevo AFP del Cliente.
      */
     public void setAfp(String afp) {
-    	if (afp.length() >= 4 && afp.length() <= 30 ) {
+    	
     		this.afp = afp;
-        } else {
-            System.out.println("Ingrese una afp valida, que sea mayor que 4 y menor a 30 caracteres");}
+       
         	
     }
 
