@@ -45,7 +45,7 @@ public class SvEditarProfesional extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("datosPro",profesionalDao);
+		request.setAttribute("datosPro",datosPro);
 		
 		request.getRequestDispatcher("EditarProfesional.jsp").forward(request, response);
 		

@@ -32,7 +32,7 @@
 
 						<label for="nombre" class="form-label">Nombres de Usuario:</label>
 						<input type="text" id="nombre" name="nombre" class="form-control"
-							maxlength="30" required value="${datosProfesional[4]}">
+							maxlength="30" required value="${datosPro[4]}">
 
 					</div>
 				</div>
@@ -42,7 +42,7 @@
 						<label for="run" class="form-label">Run:</label> <input
 							type="text" id="rut" name="rut" class="form-control"
 							maxlength="12" required pattern="\d{1,2}\.\d{3}\.\d{3}-[0-9kK]"
-							value="${datosProfesional[0]}">
+							value="${datosPro[0]}">
 					</div>
 
 				</div>
@@ -52,7 +52,7 @@
 						class="form-control" required min="01-01-1900"
 						pattern="^(0[1-9]|[1-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-\d{4}$"
 						title="Ingrese la fecha en formato AAAA-MM-DD"
-						value="${datosProfesional[5]}">
+						value="${datosPro[5]}">
 
 				</div>
 
@@ -67,7 +67,7 @@
 
 						<label for="titulo" class="form-label">Titulo Profesional:</label>
 						<input type="text" id="titulo" name="titulo" class="form-control"
-							maxlength="30" value="${datosProfesional[1]}" required>
+							maxlength="30" value="${datosPro[1]}" required>
 
 					</div>
 				</div>
@@ -77,7 +77,7 @@
 						<label for="fechaIn" class="form-label">Fecha de Ingreso:</label>
 						<input type="date" id="fechaIn" name="fechaIn"
 							class="form-control" min="01-01-1900" required
-							value="${datosProfesional[2]}"
+							value="${datosPro[2]}"
 							pattern="^(0[1-9]|[1-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-\d{4}$"
 							title="Ingrese la fecha en formato DD-MM-AAAA">
 					</div>
@@ -87,7 +87,7 @@
 
 						<label for="proyecto" class="form-label">Proyecto:</label> <input
 							type="text" id="proyecto" name="proyecto" class="form-control"
-							maxlength="30" required value="${datosProfesional[3]}">
+							maxlength="30" required value="${datosPro[3]}">
 
 					</div>
 				</div>
@@ -98,8 +98,20 @@
 
 						<label for="tipo" class="form-label">Tipo:</label> <input
 							type="text" id="tipo" name="tipo" class="form-control"
-							maxlength="30" required value="${datosProfesional[6]}">
+							maxlength="30" required value="${datosPro[6]}">
 
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-12 d-flex align-items-center justify-content-center">
+					
+				</div>
+			</div>
+			<div class="row">
+			<div class="col-md-12 col-sm-12 d-flex align-items-center justify-content-center">
+					<div class="form-group pt-3 mt-3">						
+						<button type="submit" class="btn btn-primary">
+						  <i class="bi bi-pencil"></i> Actualizar
+						</button>
 					</div>
 				</div>
 			</div>
