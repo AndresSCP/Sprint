@@ -15,6 +15,18 @@
 		<h1 class="text-center">Crear Administrativo</h1>
 		<form action="SvCrearCliente" method="post" id="formulaAdmin">
 			<div class="row">
+			<div class="col-md-6">
+					<div class="form-group">
+						<div class="form-group">
+							<!--La etiqueta label: proporciona una etiqueta descriptiva para el campo de entrada -->
+							<label for="nombre">Nombres de Usuario:</label> <input
+								type="text" id="nombre" name="nombre" class="form-control"
+								maxlength="30" minlength="10" required> <span
+								id="nombre-error" class="text-danger d-none">Ingrese al
+								menos 10 caracteres.</span>
+						</div>
+					</div>
+				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<div class="form-group">

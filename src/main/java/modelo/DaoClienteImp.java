@@ -230,14 +230,10 @@ public class DaoClienteImp  implements IClienteDAO {
 		        } catch (SQLException er) {
 		            er.getMessage();
 		        }
-		    }
+		    } 
 		}
-
-		return lista;
-		}
+		
 
 	
-
 	
-	}
 

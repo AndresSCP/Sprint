@@ -23,7 +23,7 @@
 		<h1 class="text-center">Usuario</h1>
 
 		<!--La etiqueta form especifica que la información del formulario será enviada al servidor en una petición HTTP POST cuando se envíe el formulario.-->
-		<form action="SvCrearCliente" method="post">
+		<form action="SvCrearUsuario" method="post">
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
@@ -62,7 +62,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="run" class="form-label">Run:</label> <input type="text" class="form-control" maxlength="12" 
-						required pattern="\d{1,2}\.\d{3}\.\d{3}-[0-9kK]" onblur="validarRut()">
+						required pattern="^[0-9]{7,8}-[0-9kK]$" onblur="validarRut()">
 					</div>
 
 				</div>
@@ -88,7 +88,7 @@
 				</div>
 				<div class="formulario d-none" id="formularioAdmin">
 					<!-- jsp de Crear Administrativo -->
-					<%@ include file="extras/CrearAdrministrativo2.jsp" %>
+					<%@ include file="extras/CrearAdministrativo2.jsp" %>
 
 				</div>	
 			<br>

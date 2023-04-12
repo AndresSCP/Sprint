@@ -5,9 +5,7 @@
 			  } else {
 			    document.getElementById("run").classList.remove("is-invalid");
 			  }
-			
-			
-			
+			  
 		    const inputNombre = document.querySelector('#nombre');
 		    const nombreError = document.querySelector('#nombre-error');
 
@@ -19,27 +17,28 @@
 		        }
 
 		    });
-		    
-		    const tipoUsuarioSelect = document.getElementById("tipoUsuario");
-		    const formularioCli = document.getElementById("formulario-cli");
-		   	const formularioAdmin = document.getElementById("formularioAdmin");
-		   	const formularioPro = document.getElementById("formularioPro");
-
-		    tipoUsuarioSelect.addEventListener("change", () => {
-		      if (tipoUsuarioSelect.value === "1") {
-		        formularioCli.classList.remove("d-none");
-		        formularioAdmin.classList.add("d-none");
-		        formularioPro.classList.add("d-none");
-		        
-		      } else if(tipoUsuarioSelect.value ==="2") {
-				formularioCli.classList.add("d-none");
-		        formularioAdmin.classList.add("d-none");
-		        formularioPro.classList.remove("d-none");
-			} else if (tipoUsuarioSelect.value ==="3") {
-				formularioCli.classList.add("d-none");
-		        formularioAdmin.classList.remove("d-none");
-		        formularioPro.classList.add("d-none");
-		      }
-		    });
-
-
+		   		    
+function displayFormFields() {
+  var tipoUsuario = document.getElementById("tipoUsuario");
+  var formularioCli = document.getElementById("formulario-cli");
+  var formularioPro = document.getElementById("formularioPro");
+  var formularioAdmin = document.getElementById("formularioAdmin");
+  
+  if (tipoUsuario.value === "1") {
+    formularioCli.classList.remove("d-none");
+    formularioPro.classList.add("d-none");
+    formularioAdmin.classList.add("d-none");
+  } else if (tipoUsuario.value === "2") {
+    formularioCli.classList.add("d-none");
+    formularioPro.classList.remove("d-none");
+    formularioAdmin.classList.add("d-none");
+  } else if (tipoUsuario.value === "3") {
+    formularioCli.classList.add("d-none");
+    formularioPro.classList.add("d-none");
+    formularioAdmin.classList.remove("d-none");
+  } else {
+    formularioCli.classList.add("d-none");
+    formularioPro.classList.add("d-none");
+    formularioAdmin.classList.add("d-none");  
+}
+}

@@ -47,8 +47,12 @@ public class Administrativo extends Usuario {
 
 	@Override
 	public String toString() {
-		return "Administrativo [area=" + area + ", expPrevia=" + expPrevia + ", email=" + email + "]";
+		return "Administrativo [area=" + area + ", expPrevia=" + expPrevia + ", email=" + email + ", getRunUsuario()="
+				+ getRunUsuario() + ", getNombreUsuario()=" + getNombreUsuario() + ", getFechaNacimientoUsuario()="
+				+ getFechaNacimientoUsuario() + ", getTipoUsuario()=" + getTipoUsuario() + "]";
 	}
+
+
 		
 }
 	

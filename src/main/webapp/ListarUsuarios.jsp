@@ -29,7 +29,7 @@
 
 		<div class="col-md-12">
 			<div class="form-group" >
-				<label for="tipoUsuario">Tipo de Usuario</label> <select
+<!-- 				<label for="tipoUsuario">Tipo de Usuario</label> <select
 					id="tipoUsuario" name="tipoUsuario" class="form-control" required
 					onchange="displayFormFields()">
 					<option value="">Seleccione un tipo de usuario</option>
@@ -38,7 +38,7 @@
 					<option value="administrativo">Administrativo</option>
 					<option value="usuario">Usuario</option>
 				</select> <span id="nombre-error" class="text-danger">Seleccione
-					un tipo de usuario.</span>
+					un tipo de usuario.</span> -->
 				<div class="formulario d-none" id="formulario-usuario">
 					<!-- se definen cuatro columnas (RUN Usuario, Nombres, Fecha de Nacimiento y Tipo Usuario) utilizando la etiqueta "th" para los encabezados de columna.-->
 					<table class="table">
@@ -69,7 +69,7 @@
 					</table>
 				</div>
 				<div class="formulario d-none" id="formulario-cliente">
-					<jsp:include page="CrearCliente.jsp" />
+					<jsp:include page="extras/CrearCliente2.jsp" />
 				</div>
 				<div class="formulario d-none" id="formulario-profesional">
 					<%--     <jsp:include page="CrearProfesional.jsp" /> --%>

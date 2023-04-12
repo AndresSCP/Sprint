@@ -33,14 +33,14 @@ public class SvEditarAdministrativo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int runUsuario = Integer.parseInt(request.getParameter("runUsuario"));
-		System.out.println(runUsuario);
+		/* System.out.println(runUsuario); */
 		AdministrativoDaoImpl administrativoDao = new AdministrativoDaoImpl();
-		
+
 		Administrativo administrativo = administrativoDao.obtenerAdministrativoPorId(runUsuario);
-		
+			 
 		request.setAttribute("administrativo",administrativo);
 		
-		request.getRequestDispatcher("ListarAdministrativos.jsp").forward(request, response);
+		request.getRequestDispatcher("EditarAdministrativo.jsp").forward(request, response);
 		
 	}
 
@@ -53,22 +53,31 @@ public class SvEditarAdministrativo extends HttpServlet {
 		int runUsuario = Integer.parseInt(request.getParameter("run"));
 		String nombre = request.getParameter("nombreUsuario");
 		String fechaNacimiento = request.getParameter("fechaNacimientoUsuario");
+		int tipoUsuario = Integer.parseInt(request.getParameter("tipoUsuario"));
 		String area = request.getParameter("area");
 		String expPrevia = request.getParameter("expPrevia");
 		String email = request.getParameter("email");
 
 		Administrativo administrativo = new Administrativo();
+		
 		administrativo.setRunUsuario(runUsuario); // obtén el RUN del administrativo que se está editando
 		administrativo.setNombreUsuario(nombre);
 		administrativo.setFechaNacimientoUsuario(fechaNacimiento);
+		administrativo.setTipoUsuario(tipoUsuario);
 		administrativo.setArea(area);
 		administrativo.setExpPrevia(expPrevia);
 		administrativo.setEmail(email);
 
-//		AdministrativoDAOimpl dao = new AdministrativoDAOimpl();
-//		dao.actualizarAdministrativo(administrativo);
+        AdministrativoDaoImpl dao = new AdministrativoDaoImpl();
+        dao.actualizarAdministrativo(administrativo);
 
 		// redirige a la página de confirmación o a la página de detalles del administrativo actualizado
-	}
-
+        
+        request.getRequestDispatcher("ListarAdministrativos.jsp").forward(request, response);
+        }
 }
+
+
+
+	
+

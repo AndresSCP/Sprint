@@ -143,10 +143,8 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 
 	@Override
 	public Administrativo obtenerAdministrativoPorId(int id) {
-		String sql = "SELECT u.run,u.nombre,u.fechaNac,u.tipo,a.area,a.expPrevia,a.email FROM administrativos a WHERE u.run =?";
-		sql += " JOIN usuarios u";
-		sql += " ON a.run = u.run";
-
+		String sql = "SELECT u.run,u.nombre,u.fechaNac,u.tipo,a.area,a.expPrevia,a.email FROM administrativos a JOIN usuarios u ON a.run = u.run WHERE u.run =?;"; 
+        
 		Administrativo administrativo = new Administrativo();
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -161,7 +159,6 @@ public class AdministrativoDaoImpl implements IAdministrativoDao {
 	            administrativo.setExpPrevia(rs.getString("expPrevia"));
 	            administrativo.setEmail(rs.getString("email"));        
 			}
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
