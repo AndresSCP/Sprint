@@ -6,7 +6,7 @@
 			  
 			  //d{7,8} indica que la cadena debe contener entre 7 y 8 dígitos numéricos.
 			  //[\dkK] indica que después del guion puede haber una letra "k" o "K"
-			  if (!/^(\d{7,8}-[\dkK])$/.test(rut)) {
+			  if (!/^(\d{7,8}-[\dkK])$/i.test(rut)) {
 			    document.getElementById("run").classList.add("is-invalid");
 			  } else {
 			    document.getElementById("run").classList.remove("is-invalid");

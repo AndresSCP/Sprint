@@ -1,22 +1,22 @@
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-	<div class="container">
 		<h1 class="text-center">Administrativo</h1>
-		<form action="SvCrearCliente" method="post" id="formularioAdmin">
+		<form action="SvCrearAdministrador" method="POST" id="formularioAdmin" >
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
 						<div class="form-group">
-						    <label for="nombre">Area: </label>
-						    <input type="text" id="nombre" name="nombre" class="form-control" maxlength="30" minlength="5" required>
+						    <label for="area">Area: </label>
+						    <input type="text" id="area" name="area" class="form-control" maxlength="30" minlength="5" required>
 						    <span id="nombre-error" class="text-danger d-none">Ingrese al menos 5 caracteres.</span>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-					    <label for="apellido">Experiencia Previa: </label>
-					    <input type="text" id="apellido" name="apellido" class="form-control" maxlength="30" minlength="5" required>
+					    <label for="expPrevia">Experiencia Previa: </label>
+					    <input type="text" id="expPrevia" name="expPrevia" class="form-control" maxlength="30" minlength="5" required>
 					    <span id="apellido-error" class="text-danger" style="display: none;">Ingrese al menos 5 caracteres.</span>
 					</div>
 				</div>
@@ -25,17 +25,18 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-  						<label for="telefono" class="form-label">Email:</label>
- 						 <input type="text" id="telefono" name="telefono" class="form-control" maxlength="15" required >
+  						<label for="email" class="form-label">Email:</label>
+ 						 <input type="text" id="email" name="email" class="form-control" maxlength="15" required >
   				</div>
 					
 				</div>
 			</div>
 			<br>
 			<div class="form-group">
-				<button type="submit" class="btn btn-primary">Enviar</button>
+				<button type="submit" class="btn btn-primary">Ingresar</button>
 			</div>
 			<br>
+		
 			<%-- Verificar si hay un mensaje y mostrarlo en un mensaje de Bootstrap --%>
 			<c:if test="${not empty sessionScope.mensaje}">
 			  <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -48,7 +49,6 @@
 			  ${sessionScope.remove("mensaje")}
 			</c:if>
 		</form>
-	</div>
 
 
 

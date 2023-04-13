@@ -8,26 +8,26 @@ function displayFormFields() {
     
     /*  Dependiendo del valor de selectedOption, diferentes campos de formulario se mostrarán u ocultarán utilizando los métodos 
     classList.add() y classList.remove().*/
-    if (selectedOption == "cliente") {
+    if (selectedOption == "Cliente") {
 		/*La cadena de caracteres "d-none" es una clase de CSS que se utiliza para ocultar un elemento en una página web*/
-        document.getElementById("formulario-cliente").classList.remove("d-none");
-        document.getElementById("formulario-profesional").classList.add("d-none");
-        document.getElementById("formulario-administrativo").classList.add("d-none");
+        document.getElementById("formulario-cli").classList.remove("d-none");
+        document.getElementById("formularioPro").classList.add("d-none");
+        document.getElementById("formularioAdmin").classList.add("d-none");
         document.getElementById("formulario-usuario").classList.add("d-none");
-    } else if (selectedOption == "profesional") {
-        document.getElementById("formulario-cliente").classList.add("d-none");
-        document.getElementById("formulario-profesional").classList.remove("d-none");
-        document.getElementById("formulario-administrativo").classList.add("d-none");
+    } else if (selectedOption == "Profesional") {
+        document.getElementById("formulario-cli").classList.add("d-none");
+        document.getElementById("formularioPro").classList.remove("d-none");
+        document.getElementById("formularioAdmin").classList.add("d-none");
         document.getElementById("formulario-usuario").classList.add("d-none");
-    } else if (selectedOption == "administrativo") {
-        document.getElementById("formulario-cliente").classList.add("d-none");
-        document.getElementById("formulario-profesional").classList.add("d-none");
-        document.getElementById("formulario-administrativo").classList.remove("d-none");
+    } else if (selectedOption == "Administrativo") {
+        document.getElementById("formulario-cli").classList.add("d-none");
+        document.getElementById("formularioPro").classList.add("d-none");
+        document.getElementById("formularioAdmin").classList.remove("d-none");
         document.getElementById("formulario-usuario").classList.add("d-none");
     } else if (selectedOption == "usuario") {
-        document.getElementById("formulario-cliente").classList.add("d-none");
-        document.getElementById("formulario-profesional").classList.add("d-none");
-        document.getElementById("formulario-administrativo").classList.add("d-none");
+        document.getElementById("formulario-cli").classList.add("d-none");
+        document.getElementById("formularioPro").classList.add("d-none");
+        document.getElementById("formularioAdmin").classList.add("d-none");
         document.getElementById("formulario-usuario").classList.remove("d-none");
 }
 }

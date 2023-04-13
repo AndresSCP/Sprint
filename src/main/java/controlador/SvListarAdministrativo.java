@@ -47,8 +47,12 @@ public class SvListarAdministrativo extends HttpServlet {
 			} catch (Exception  e) {
 				System.out.println(e.getMessage());
 			}
-			System.out.println("El tamaño de la lista miArrayList es: " + listaAdm.size());
-			response.getWriter().println("El tamaño de la lista miArrayList es: " + listaAdm.size());
+			/*
+			 * System.out.println("El tamaño de la lista miArrayList es: " +
+			 * listaAdm.size());
+			 * response.getWriter().println("El tamaño de la lista miArrayList es: " +
+			 * listaAdm.size());
+			 */
 			// Establecer el atributo miLista en el objeto request
 			request.setAttribute("miListaAdministrativo", listaAdm);
 			// Llamamos a la página JSP del formulario de Lista de Clientes

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class ContactoServletJSP
  */
-@WebServlet("/ContactoServletJSP")
+@WebServlet("/SvContacto")
 public class SvContacto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -53,8 +53,21 @@ public class SvContacto extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	    // Obtener los valores de los campos del formulario
+	    String nombre = request.getParameter("nombre");
+	    String email = request.getParameter("email");
+	    String asunto = request.getParameter("asunto");
+	    String mensaje = request.getParameter("mensaje");
+	    
+	    // Imprimir los valores en la consola de Java
+	    System.out.println("Nombre: " + nombre);
+	    System.out.println("Email: " + email);
+	    System.out.println("Asunto: " + asunto);
+	    System.out.println("Mensaje: " + mensaje);
+
+	    // Redireccionar a una página de confirmación o agradecimiento
+	    request.getSession().setAttribute("mensaje", "Los datos fueron registrados satisfactoriamente.");
+	    request.getRequestDispatcher("formContacto.jsp").forward(request, response);
 	}
 
 }
