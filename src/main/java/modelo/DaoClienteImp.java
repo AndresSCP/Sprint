@@ -233,7 +233,7 @@ public class DaoClienteImp  implements IClienteDAO {
 		    }
 		}
 
-		return lista;
+		//return lista;
 		}
 
 	
