@@ -13,7 +13,6 @@
 <body id="bodycliente">
 	<div class="container">
 		<h1 class="text-center">Crear Administrativo</h1>
-		<form action="SvCrearCliente" method="post" id="formulaAdmin">
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">

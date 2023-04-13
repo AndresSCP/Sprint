@@ -24,9 +24,9 @@
 		<h1 class="text-center">Usuario</h1>
 
 		<!--La etiqueta form especifica que la información del formulario será enviada al servidor en una petición HTTP POST cuando se envíe el formulario.-->
-		<form action="SvCrearCliente" method="post">
+		<form action="SvCrearCliente" method="post" id="formularioSv" name="formularioSv">
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-6"> 
 					<div class="form-group">
 						<div class="form-group">
 						 <!--La etiqueta label: proporciona una etiqueta descriptiva para el campo de entrada -->
@@ -134,6 +134,7 @@
 
 <!--código de JavaScript que contiene dos funciones para validar el RUT  y el nombre de un usuario  -->
 <script>
+
 /* 			function validarRut() {
 			  var rut = document.getElementById("run").value;
 			  if (!/^(\d{7,8}-[\dkK])$/.test(rut)) {

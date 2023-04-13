@@ -23,26 +23,31 @@ function displayFormFields() {
   const formularioCli = document.getElementById("formulario-cli");
   const formularioAdmin = document.getElementById("formularioAdmin");
   const formularioPro = document.getElementById("formularioPro");
+  const formularioSv = document.getElementById("formularioSv"); // Agregamos esta línea
   
   if (tipoUsuario.value === "1") {
     formularioCli.classList.remove("d-none");
     formularioPro.classList.add("d-none");
     formularioAdmin.classList.add("d-none");
-
+    formularioSv.action = 'SvCrearCliente'; // Agregamos esta línea
   } else if (tipoUsuario.value === "2") {
     formularioCli.classList.add("d-none");
     formularioPro.classList.remove("d-none");
     formularioAdmin.classList.add("d-none");
+    formularioSv.action = 'SvCrearProfesional'; // Agregamos esta línea
   } else if (tipoUsuario.value === "3") {
     formularioCli.classList.add("d-none");
     formularioPro.classList.add("d-none");
     formularioAdmin.classList.remove("d-none");
+    formularioSv.action = 'SvCrearAdministrador'; // Agregamos esta línea
   } else {
     formularioCli.classList.add("d-none");
     formularioPro.classList.add("d-none");
     formularioAdmin.classList.add("d-none");
+    formularioSv.action = ''; // Agregamos esta línea para dejar vacía la propiedad "action" en caso contrario
   }
 };
+
 
 
 
