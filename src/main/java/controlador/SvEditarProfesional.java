@@ -108,7 +108,7 @@ public class SvEditarProfesional extends HttpServlet {
         if (session.getAttribute("username") != null) {
         	// Llamamos a la página JSP del formulario de Crear Usuario
         	request.getSession().setAttribute("mensaje", "Los datos fueron modificados satisfactoriamente.");
-            request.getRequestDispatcher("ListarProfesionales.jsp").forward(request, response);
+            request.getRequestDispatcher("SvListarProfesional").forward(request, response);
         }else{
         	//Se redirige la pagina a login
         	request.getRequestDispatcher("login.jsp").forward(request, response);
