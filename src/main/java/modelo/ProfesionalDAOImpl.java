@@ -58,34 +58,20 @@ public class ProfesionalDAOImpl implements IProfesionalDao {
 // método actualizarProfesional de una clase ProfesionalDAOImpl. Este método actualiza la información de un profesional en la base de datos.
     public void actualizarProfesional(Profesional profesional) {
         try {
-            String sqlProfesionales = "UPDATE profesionales SET tituloProfesional=?, fechaIngreso=?, proyecto=? WHERE run=?";
-            String sqlUsuarios = "UPDATE usuarios SET nombre=?, fechaNac=?, tipo=? WHERE run=?";
-            
-            conexion.setAutoCommit(false);
-            
+            String sqlProfesionales = "UPDATE profesionales SET tituloProfesional=?, fechaIngreso=?, proyecto=? WHERE run=?";            
+            conexion.setAutoCommit(false);            
             PreparedStatement statementProfesionales = conexion.prepareStatement(sqlProfesionales);
             statementProfesionales.setString(1, profesional.getTituloProfesional());
             statementProfesionales.setString(2,  profesional.getFechaIngreso());
             statementProfesionales.setString(3, profesional.getProyecto());
             statementProfesionales.setInt(4, profesional.getRunUsuario());
             statementProfesionales.executeUpdate();
-            
-            PreparedStatement statementUsuarios = conexion.prepareStatement(sqlUsuarios);
-            statementUsuarios.setString(1, profesional.getNombreUsuario());
-            statementUsuarios.setString(2, profesional.getFechaNacimientoUsuario());
-            statementUsuarios.setInt(3, profesional.getTipoUsuario());
-            statementUsuarios.setInt(4, profesional.getRunUsuario());
-            statementUsuarios.executeUpdate();
+
             
             conexion.commit();
             conexion.setAutoCommit(true);
         } catch (SQLException e) {
-            try {
-                conexion.rollback();
-                conexion.setAutoCommit(true);
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+          
             e.printStackTrace();
         }
     }

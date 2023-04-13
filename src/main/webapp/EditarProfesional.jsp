@@ -23,7 +23,7 @@
 
 
 		<!--La etiqueta form especifica que la información del formulario será enviada al servidor en una petición HTTP POST cuando se envíe el formulario.-->
-		<form action="SvUpdateProfesional" method="post">
+		<form action="SvEditarProfesional" method="post">
 
 			<div class="row pt-5">
 				<h3 class="text-center">Usuario</h3>
@@ -40,8 +40,8 @@
 					<div class="form-group">
 
 						<label for="run" class="form-label">Run:</label> <input
-							type="text" id="rut" name="rut" class="form-control"
-							maxlength="12" required pattern="\d{1,2}\.\d{3}\.\d{3}-[0-9kK]"
+							type="text" id="run" name="run" class="form-control"
+							maxlength="12" required 
 							value="${datosPro[0]}">
 					</div>
 
