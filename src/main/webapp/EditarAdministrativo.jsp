@@ -99,7 +99,8 @@
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary">Actualizar</button>
 			</div>
-			<button type="button" class="btn btn-primary" onclick="window.location.href='ListarAdministrativos.jsp'">Volver</button>
+			<br>
+			<button type="button" class="btn btn-primary" onclick="window.location.href='SvListarAdministrativo'">Volver</button>
 			<br>
 			<%-- Verificar si hay un mensaje y mostrarlo en un mensaje de Bootstrap --%>
 			<c:if test="${not empty sessionScope.mensaje}">
